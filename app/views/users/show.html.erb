@@ -1,0 +1,32 @@
+<% provide(:title, @user.name) %>
+
+<div class="row">
+    <section class="user_info">
+      <hr>
+      <h1>
+        <%= @user.name  %><br><hr>
+        <%= gravatar_for @user , size: 150 %>
+      </h1>
+    </section>
+    <div style="text-align:center;">
+    <% if logged_in? == true %>
+     <% if current_user.admin? && !current_user?(@user) %>
+     <%= link_to "Delete", @user, method: :delete, class: " btn btn-lg btn-success",
+                                  data: { confirm: "You sure?" } %>
+     <% end %>
+     <% if !current_user?(@user) || current_user.admin?  %>
+     <%= link_to "Edit coordinator", edit_user_path(@user), class: " btn btn-lg btn-success" %>
+     <% end %>
+     <% end %>
+     <br>
+     </div>
+     <div class="col-md-6 col-md-offset-3">
+       <hr>
+     </div>
+       
+      <% if @user.courses.any? %>
+      <ol class="courses">
+      <%= render @courses %>
+      </ol>
+      <% end %>
+</div>

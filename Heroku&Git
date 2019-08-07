@@ -27,3 +27,10 @@ heroku run rails db:migrate
 git add -A
 git commit -am "XXXXX"
 git push heroku
+
+//Normal push to github
+git add -A
+git commit -m "XXXX"
+git checkout master
+git merge XXXXX
+git push origin master
