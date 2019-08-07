@@ -1,0 +1,29 @@
+//Gitbucket for Assignment
+ git remote rm origin
+ git remote add origin https://github.com/Hin97/PP1-Group26.git
+ 
+ 
+//To check current remote
+ git remote -v
+ 
+//Heroku for Assignment
+ git remote rm heroku
+heroku git:remote -a intense-fjord-10443
+ 
+//Code to install heroku
+source <(curl -sL https://cdn.learnenough.com/heroku_install)
+
+//Create heroku repo
+heroku create
+
+//Push whole program to heroku
+git commit -am "Upload whole program"
+git push heroku master
+
+//Update database on heroku
+heroku run rails db:migrate
+
+//Normal push to heroku
+git add -A
+git commit -am "XXXXX"
+git push heroku
