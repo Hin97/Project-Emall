@@ -3,8 +3,8 @@
     <%= link_to "EMALL", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   '#' %></li>
-        <li><%= link_to "Register",   '#' %></li>
+        <li><%= link_to "Home", root_path %></li>
+        <li>  <%= link_to  raw("<span class='glyphicon glyphicon-asterisk'></span> Register"), signup_path, class: " btn btn-lg btn-success" %></li>
         <li><%= link_to "Log in", '#' %></li>
       </ul>
     </nav>
