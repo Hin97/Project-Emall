@@ -34,3 +34,6 @@ git commit -m "XXXX"
 git checkout master
 git merge XXXXX
 git push origin master
+
+//Heroku reset database
+heroku restart; heroku pg:reset DATABASE --confirm intense-fjord-10443; heroku run rake db:migrate
