@@ -37,3 +37,7 @@ git push origin master
 
 //Heroku reset database
 heroku restart; heroku pg:reset DATABASE --confirm intense-fjord-10443; heroku run rake db:migrate
+
+//Setup github
+git config --global user.name "USER_NAME"
+git config --global user.email EMAIL_ADDRESS
