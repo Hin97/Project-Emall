@@ -1,32 +1,48 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed ">
   <div class="container">
-    <%= link_to "EMALL", root_path, id: "logo" %>
     <nav>
+
+          <% if logged_in? %>
+          
+      <ul class="nav navbar-nav navbar-left">
+      <%= link_to "EMALL", current_user, id: "logo", class: "btn btn-lg btn-success" %> 
+      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li>  <%= link_to  raw("<span class='glyphicon glyphicon-asterisk'></span> Register"), signup_path, class: " btn btn-lg btn-success" %></li>
-       <!--If logined-->  
-        <% if logged_in? %>
-          <li><%= link_to "Items", '#' %></li>
+
+          
+          <!--Logout-->
           <li class="dropdown">
-            <a href="#" class="btn btn-lg btn-primary dropdown-toggle " style="background-color:#FF0000" data-toggle="dropdown">
+            <a href="#" class="btn btn-lg btn-primary dropdown-toggle "  data-toggle="dropdown">
              <%= current_user.name %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user)  %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: :delete %>
               </li>
             </ul>
-          </li>
+            </li>
+            </ul>
           
-       <!--If haven't login-->  
         <% else %>
-        <li><%= link_to raw("<span class='glyphicon glyphicon-user'></span> Log in"), login_path, class: " btn btn-lg btn-primary" %></li>
-        <% end %>
+        
+  
+        
+      <ul class="nav navbar-nav navbar-left">
+      <%= link_to "EMALL", root_path,id: "logo", class: "btn btn-lg btn-success" %> 
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!--sign up-->
+        <li><%= link_to "Sign up", signup_path, class: " btn btn-lg btn-primary" %></li>
+        <!--Login-->
+        <li><%= link_to "Log in", login_path, class: " btn btn-lg btn-primary" %></li>
+        </ul>
+        <% end %>
+
+
+
     </nav>
   </div>
 </header>
