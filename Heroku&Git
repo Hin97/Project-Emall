@@ -8,7 +8,7 @@
  
 //Heroku for Assignment
  git remote rm heroku
-heroku git:remote -a intense-fjord-10443
+heroku git:remote -a project-emall
  
 //Code to install heroku
 source <(curl -sL https://cdn.learnenough.com/heroku_install)
