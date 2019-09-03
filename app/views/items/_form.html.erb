@@ -1,0 +1,30 @@
+<%= form_for(@item) do |f| %>
+  <%= render 'shared/erroritem_messages', object: @item %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :price %>$
+      <%= f.text_field :price, placeholder: "In USD" %>
+
+            
+      <%= f.label :quantity %>
+      <%= f.text_field :quantity %>
+      
+      <%= f.label :description %>
+      <%= f.text_area :description ,size: "30x10" %>
+
+      <%= hidden_field_tag "cate_ids[]",nil %>
+      <%= f.label "category:" %>         
+      <% Category.all.each do |category| %>
+      <label class = "checkbox-inline">
+      <div class = "checkboxtag">
+      <%= check_box_tag "cate_ids[]", category.id %>
+      </div>
+      <%= category.name %>
+      </label>
+      <% end %>
+    <br></br>
+    <%= f.submit yield(:button_text), class: "btn btn-success" %>
+    <% end %>
+
+    

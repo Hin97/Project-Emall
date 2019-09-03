@@ -4,6 +4,7 @@ before_action :correct_user,   only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
+    @items = @user.items.paginate(page: params[:page])
   end
 
   def new
@@ -14,7 +15,7 @@ before_action :correct_user,   only: [:edit, :update]
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to the EMALL!"
       redirect_to @user
     else
       render 'new'

@@ -1,0 +1,24 @@
+  <li id="item-<%= item.id %>">
+      <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+      <div style="background-color: #eaeaea; padding:23px;  border: 1px solid gray;border-radius: 25px;">
+      <span class="itemname"><%= link_to item.name, item %></span>
+      <span class="price">Price: <%= item.price %></span>
+      
+     <% if item.quantity>0 %>
+      <span class="quantity">Quantity: In stock</span>
+      <% else %>
+      <span class="quantity">Quantity: Out of stock</span>
+     <% end %>
+    
+  <span class="timestamp">
+      <%= time_ago_in_words(item.created_at) %>
+      <% if current_user?(item.user) %>
+      <%= link_to "delete", item, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+      </div>
+      </div>
+      </div>
+  </li>

@@ -1,7 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
 /* mixins, variables, etc. */
 
 $light-gray: #777;
@@ -140,8 +139,6 @@ p4 {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  background-color: $gray-medium-light;
 }
 
 footer a {
@@ -266,19 +263,19 @@ margin-right:15px;
 }
 
 
-/* courses */
+/* items */
 
-.courses {
+.items {
   list-style: none;
   padding: 20px;
   li {
     padding: 10px 0;
   }
-  .coursename {
+  .itemname {
     font-weight: bold;
     font-size: 20px;
   }
-  .prerequisite {
+  .price {
     display: block;
     padding-bottom: 10px;
     font-size: 13px;
@@ -289,17 +286,15 @@ margin-right:15px;
     //   padding: 5px 0;
     // }
   }
-  
-    .prerequisite-show {
+  .quantity {
     display: block;
-    padding-bottom: 10px;
-    font-size: 15px;
-    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 13px;
     font-weight: bold;
-    }
+  }
     .category {
     display: block;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     font-size: 13px;
     padding-top: 5px;
     font-weight: bold;}
@@ -311,12 +306,6 @@ margin-right:15px;
     padding-top: 5px;
     font-weight: bold;}
     
-    .location {
-    display: block;
-    padding-bottom: 10px;
-    font-size: 13px;
-    padding-top: 5px;
-    font-weight: bold;}
     
   .timestamp {
     color: solid gray;

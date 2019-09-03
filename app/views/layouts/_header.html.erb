@@ -2,13 +2,15 @@
   <div class="container">
     <nav>
 
-          <% if logged_in? %>
+      <% if logged_in? %>
           
       <ul class="nav navbar-nav navbar-left">
       <%= link_to "EMALL", current_user, id: "logo", class: "btn btn-lg btn-success" %> 
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
+      <!--New Item-->
+          <li><%= link_to "Post Item", newitem_path, class: " btn btn-lg btn-primary" %></li>
           
           <!--Logout-->
           <li class="dropdown">
@@ -26,9 +28,9 @@
             </li>
             </ul>
           
+          
         <% else %>
         
-  
         
       <ul class="nav navbar-nav navbar-left">
       <%= link_to "EMALL", root_path,id: "logo", class: "btn btn-lg btn-success" %> 

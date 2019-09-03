@@ -41,3 +41,6 @@ heroku restart; heroku pg:reset DATABASE --confirm intense-fjord-10443; heroku r
 //Setup github
 git config --global user.name "USER_NAME"
 git config --global user.email EMAIL_ADDRESS
+
+//Reset database
+rails db:drop db:create db:migrate db:seed
