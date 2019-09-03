@@ -13,10 +13,6 @@
     
   <span class="timestamp">
       <%= time_ago_in_words(item.created_at) %>
-      <% if current_user?(item.user) %>
-      <%= link_to "delete", item, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-    <% end %>
   </span>
       </div>
       </div>

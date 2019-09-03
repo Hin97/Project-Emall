@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20190902071938) do
     t.float "price"
     t.text "description"
     t.integer "quantity"
+    t.integer "year"
+    t.string "condition"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

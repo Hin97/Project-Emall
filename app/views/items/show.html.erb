@@ -18,6 +18,8 @@
            "<%= Category.find(id).name %>"
       <% end %>
       </span>
+      <span class="year">Year: <%= @item.year %></span>
+      <span class="condition">Condition: <%= @item.condition%></span>
       <span class="description">Book Description:</span>
       <%= @item.description %>
       
@@ -30,7 +32,7 @@
     
      <% if logged_in? == true %>
      <% if current_user?(@item.user) %>
-      <%= link_to "delete", @item, method: :delete,
+      <%= link_to "Take down", @item, method: :delete, class: " btn btn-lg btn-success",
                                        data: { confirm: "You sure?" } %>
      <% end %>
      <% end %>
@@ -40,7 +42,7 @@
       <div class="col-md-4">
       <div style="text-align: center;margin-top:50px;">
       <div style= "margin-left:13px;"><%= gravatar_for @item.user, size: 150 %></div><br>
-      <p3>Brought to you by:</p3><br>
+      <p3>Posted By:</p3><br>
       <p4><%= link_to @item.user.name, @item.user %></p4>
       </div>
       </div>
