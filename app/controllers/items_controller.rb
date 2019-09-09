@@ -27,11 +27,19 @@ class ItemsController < ApplicationController
   @item = Item.all
   end
   
+  
+  def search
+    @item = Item.where("name LIKE ?","%" + params[:q] + "%")
+  end
+  
+  
+  
   def destroy
     @item.destroy
     flash[:success] = "Item deleted"
     redirect_to request.referrer || root_url
   end
+  
   
   
   # For transaction
