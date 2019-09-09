@@ -1,0 +1,49 @@
+<% provide(:title, "New Trade") %>
+<div class="row">
+    <section class="user_info">
+      <h5>
+      Purchase information
+      </h5>
+    </section>
+    
+      <ol class="items">
+      <div class="row">
+     <div class="col-md-4">
+      <div style="background-color: #eaeaea; padding:20px;  border: 1px solid gray;border-radius: 25px;">        
+      <div style="text-align: center;margin-top:50px;">
+      <span class="name">Name: <%= @item.name %></span>
+      <span class="year">Year: <%= @item.year %></span>
+      <span class="condition">Condition: <%= @item.condition %></span>
+      </div>
+      </div>
+      <br></br>
+     <%= link_to "Return to List", items_path, class: " btn btn-lg btn-success" %>
+      </div>
+
+      <div class="col-md-8">
+      <div style="background-color: #eaeaea; padding:20px;  border: 1px solid gray;border-radius: 25px;">  
+     <span class="price">Price: $<%= @item.price %></span>
+      <span class="category">Category: 
+      <% @item.category_ids.each do |id| %>
+       "<%= Category.find(id).name %>"
+      <% end %>
+      </span>
+      <span class="name">Seller: <%= @item.user.name %></span>
+      <span class="name">Seller's email: <%= @item.user.email%></span>
+    <%= form_for(@trade, url: newtrade_path) do |f| %>
+      <%= render 'shared/error_messages', object: @trade %>
+          <%= f.label "Quantity" %>:
+          <%= f.text_field :buyquantity , style: "width:10%" %>
+          <br>
+        <%= f.label "Paying method" %>
+        <%= f.select(:paymethod, Trade::TYPE_LIST )  %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+    <br>
+    <%= f.submit "Pay", class: "btn btn-lg btn-success", style: "width:10%" %>
+     <% end %>
+      </div>
+      </div>
+      </div>
+      </ol>
+</div>
+

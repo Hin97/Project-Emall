@@ -1,0 +1,55 @@
+<% provide(:title, 'Payment') %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4" >
+  <%= form_for(@payment, url: newpayment_path) do |f| %>
+  <%= render 'shared/error_messages', object: @payment %>
+  
+  <% if @trade.paymethod.eql?("Credit Card") %>
+  
+  <h5>Credit Card detail</h5>
+  
+  <%= f.label "Cardnumber" %>
+  <br>
+  <%= f.text_field :cardnumber , style: 'width:50%'%>
+  <br>
+  <%= f.label "Expire date"  %> &emsp;&emsp;&emsp;&emsp;&nbsp;
+  <%= f.label "CVV"  %>
+  <br>
+  <%= f.text_field :expmm , style: 'width:10%', placeholder: "mm"%> /
+  <%= f.text_field :expyy , style: 'width:10%', placeholder: "yy"%>&emsp;&emsp;&emsp;&emsp;
+  <%= f.text_field :cvv , style: 'width:10%'%>
+  <br>
+  
+  <%= f.label "Name on Card" %>
+  <br>
+  <%= f.text_field :cardname , style: 'width:50%'%>
+  <br>
+  <%= f.label "Total price:" %>
+  $<%= @trade.totalprice %>
+  <br>
+  
+  <%= f.submit "Complete payment", class: "btn btn-success" %>
+  <% end %>
+  <% if @trade.paymethod.eql?("Paypal") %>
+  
+  <h5>Paypal Link</h5>
+    
+  <%= f.label "Paypal" %>
+  <!--Paypal link here-->
+  <%= f.hidden_field :cardnumber, value: nil%>
+  <%= f.hidden_field :cardname, value: nil%>
+  <%= f.hidden_field :expmm, value: nil%>
+  <%= f.hidden_field :expyy, value: nil%>
+  <%= f.hidden_field :cvv, value: nil%>
+
+  <br>
+  <%= f.label "Total price:" %>
+  $<%= @trade.totalprice %>
+  <br>
+  <%= f.submit "Complete payment", class: "btn btn-success" %>
+  <% end %>
+<% end %>
+
+  </div>
+</div>

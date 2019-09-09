@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    if logged_in?
+    flash[:danger] = 'You have already login'
+    redirect_back_or current_user
+    end
   end
 
   def create
@@ -7,6 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      flash[:success] = 'Welcome back to EMALL'
       redirect_back_or user
     else
       flash.now[:danger] = 'Invalid email/password combination'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190902071938) do
+ActiveRecord::Schema.define(version: 20190907025357) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,32 @@ ActiveRecord::Schema.define(version: 20190902071938) do
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_items_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "cardname"
+    t.integer "cardnumber"
+    t.integer "expmm"
+    t.integer "expyy"
+    t.integer "cvv"
+    t.integer "trade_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trade_id", "created_at"], name: "index_payments_on_trade_id_and_created_at"
+    t.index ["trade_id"], name: "index_payments_on_trade_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "buyquantity"
+    t.float "totalprice"
+    t.string "paymethod"
+    t.boolean "status", default: false
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id", "created_at"], name: "index_trades_on_item_id_and_created_at"
+    t.index ["item_id"], name: "index_trades_on_item_id"
   end
 
   create_table "users", force: :cascade do |t|

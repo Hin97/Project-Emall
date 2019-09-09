@@ -8,7 +8,12 @@ before_action :correct_user,   only: [:edit, :update]
   end
 
   def new
+  if (logged_in?)
+    flash.discard[:danger] = "You have already logined"
+    redirect_to current_user
+  else
     @user = User.new
+  end
   end
 
   def create
@@ -35,6 +40,8 @@ before_action :correct_user,   only: [:edit, :update]
       render 'edit'
     end
   end
+  
+  
 
   private
 
