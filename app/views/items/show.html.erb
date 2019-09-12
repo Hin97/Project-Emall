@@ -34,14 +34,13 @@
      <% if current_user?(@item.user) %>
       <%= link_to "Take down", @item, method: :delete, class: " btn btn-lg btn-success",
                                        data: { confirm: "You sure?" } %>
-     <% else %>
-     <% if @item.quantity > 0 %>
-     <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>
-     <% end %>
+
      <% end %>
      <% end %>
      
-
+     <% if @item.quantity > 0 && current_user?(@item.user) == false%>
+     <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>
+     <% end %>
       
       </div>
       <div class="col-md-4">

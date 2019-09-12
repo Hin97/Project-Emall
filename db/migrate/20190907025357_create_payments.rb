@@ -2,7 +2,7 @@ class CreatePayments < ActiveRecord::Migration[5.1]
   def change
     create_table :payments do |t|
       t.string :cardname 
-      t.integer :cardnumber 
+      t.string :cardnumber 
       t.integer :expmm 
       t.integer :expyy 
       t.integer :cvv 

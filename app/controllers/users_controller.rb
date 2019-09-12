@@ -8,16 +8,11 @@ before_action :correct_user,   only: [:edit, :update]
   end
 
   def new
-  if (logged_in?)
-    flash.discard[:danger] = "You have already logined"
-    redirect_to current_user
-  else
     @user = User.new
-  end
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
     if @user.save
       log_in @user
       flash[:success] = "Welcome to the EMALL!"

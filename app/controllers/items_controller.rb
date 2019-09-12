@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
   
   def search
     @item = Item.where("name LIKE ?","%" + params[:q] + "%")
+    @items = Item.all
   end
   
   
