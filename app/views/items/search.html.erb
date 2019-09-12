@@ -2,11 +2,5 @@
 
 <h1>Search Results</h1>
 <ol class="items">
-<%= if @item.nil?%>
-<h2>Looks like the book you looking for is not found on our website</h2>
-<h2>Checkout our other books</h2>
-<%= render @items%>
-<%= else %>
 <%= render @item %>
-<%= end %>
 </ol>
