@@ -7,50 +7,76 @@
     </section>
     
       <ol class="items">
+          
+    <!--row start-->
       <div class="row">
+    <!--outside left start-->
       <div class="col-md-8">
-      <div style="background-color: #eaeaea; padding:20px;  border: 1px solid gray;border-radius: 25px;">
+    <!--Box start-->
+      <div style="background-color: #eaeaea; padding:20px; border: 1px solid gray; border-radius: 25px; height: 370px;">
+    <!--In box left start-->
+      <div class="col-md-6">
 
       <span class="price">Price: $<%= @item.price %></span>
       <span class="quantity">Quantity: <%= @item.quantity %></span>
-     <span class="category">Category: 
+      <span class="category">Category: 
       <% @item.category_ids.each do |id| %>
            "<%= Category.find(id).name %>"
       <% end %>
       </span>
       <span class="year">Year: <%= @item.year %></span>
+      <span class="year">Author: <%= @item.author %></span>
       <span class="condition">Condition: <%= @item.condition%></span>
       <span class="description">Book Description:</span>
+      <p style="word-break: break-all;">
       <%= @item.description %>
-      
-      
+      </p>
+      <!--In box left end-->
+      </div>
+      <!--In box right start-->
+      <div class="col-md-6">
+      <span style = "float:right">
+      <span style = "font-weight: bold;"> Book Cover:</span><br>
+      <%= image_tag @item.image.url if @item.image? %>
+      </span>
+      <!--In box right end-->
+      </div>
+      <!--Box end-->
       </div>
       <br>
       
      <%= link_to "Return to items List", current_user, class: " btn btn-lg btn-success" %>
-           
-    
      <% if logged_in? == true %>
      <% if current_user?(@item.user) %>
       <%= link_to "Take down", @item, method: :delete, class: " btn btn-lg btn-success",
                                        data: { confirm: "You sure?" } %>
+     
 
      <% end %>
      <% end %>
+     
+     
      
      <% if @item.quantity > 0 && current_user?(@item.user) == false%>
      <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>
      <% end %>
       
+      <!--outside left end-->
       </div>
+      
+      
+      <!--outside right start-->
       <div class="col-md-4">
       <div style="text-align: center;margin-top:50px;">
       <div style= "margin-left:13px;"><%= gravatar_for @item.user, size: 150 %></div><br>
       <p3>Posted By:</p3><br>
       <p4><%= link_to @item.user.name, @item.user %></p4>
       </div>
+      <!--outside right end-->
       </div>
+      <!--row end-->
       </div>
+      <!--item class end-->
       </ol>
 </div>
 

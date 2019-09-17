@@ -3,15 +3,15 @@
     <nav>
 
       <% if logged_in? %>
-        <div class = "row">
-      <ul class="nav navbar-nav navbar">
-      <%= link_to "EMALL", current_user, id: "logo", class: "btn btn-lg btn-success" %> 
-       <li> <form class="form-inline my-2 my-lg-0" action="/search">
-       <input class="form-control" name="q" type="text" placeholder="Search" aria-label="Search">
-       <button class="btn btn-success" type="submit">Search</button>
-       </form> </li>
+          
+      <ul class="nav navbar-nav navbar-left">
+      <%= link_to "EMALL", current_user, id: "logo" %> 
       </ul>
       <ul class="nav navbar-nav navbar-right">
+       <li> <form class="form-inline my-2 my-lg-0" action="/search">
+       <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
+       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+       </form> </li>
       <!--New Item-->
           <li><%= link_to "Post Item", newitem_path, class: " btn btn-lg btn-primary" %></li>
           
@@ -31,24 +31,21 @@
             </li>
             </ul>
           
-        </div>
-          
-          
           
         <% else %>
      
         
         
       <ul class="nav navbar-nav navbar-left">
-      <%= link_to "EMALL", root_path,id: "logo", class: "btn btn-lg btn-success" %> 
+      <%= link_to "EMALL", root_path,id: "logo" %> 
+      
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
-       <li> <form class="form-inline my-2 my-lg-0" action="/search">
+    
+               <li> <form class="form-inline my-2 my-lg-0" action="/search">
        <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
        </form> </li>
-        
         <!--sign up-->
         <li><%= link_to "Sign up", signup_path, class: " btn btn-lg btn-primary" %></li>
         <!--Login-->

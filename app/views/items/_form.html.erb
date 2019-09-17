@@ -6,11 +6,13 @@
       <%= f.label :price %>$
       <%= f.text_field :price, placeholder: "In USD" %>
 
+      <%= f.label :author %>
+      <%= f.text_field :author %>
             
       <%= f.label :quantity %>
       <%= f.text_field :quantity %>
       
-      <%= f.label :year %>
+      <%= f.label "Year published" %>
       <%= f.text_field :year %>
       
       <%= f.label :condition %>
@@ -29,8 +31,19 @@
       <%= category.name %>
       </label>
       <% end %>
-    <br></br>
+      <br></br>
+      <%= f.label "Book Cover" %>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+      
+    
     <%= f.submit yield(:button_text), class: "btn btn-success" %>
     <% end %>
 
-    
+    <script type="text/javascript">
+  $('#item_image').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

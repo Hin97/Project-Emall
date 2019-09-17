@@ -36,7 +36,7 @@ git merge XXXXX
 git push origin master
 
 //Heroku reset database
-heroku restart; heroku pg:reset DATABASE --confirm intense-fjord-10443; heroku run rake db:migrate
+heroku restart; heroku pg:reset DATABASE --confirm intense-fjord-10443; heroku run rake db:migrate; heroku run rake db:seed
 
 //Setup github
 git config --global user.name 

@@ -30,7 +30,6 @@ class ItemsController < ApplicationController
   
   def search
     @item = Item.where("name LIKE ?","%" + params[:q] + "%")
-    @items = Item.all
   end
   
   
@@ -41,49 +40,18 @@ class ItemsController < ApplicationController
     redirect_to request.referrer || root_url
   end
   
-  
-  
-  # For transaction
-  
-  def newtransaction
-    @item = Item.find(params[:id])
-    @transaction = Transaction.new
-  end
-
-  def createtransaction
-    @transaction = @item.transactions.build(transac_params)
-    @transaction.totalprice = totalprice
-    if @transaction.save
-      flash[:success] = "Please pay in order to complete transaction!"
-      redirect_to current_user
-    else
-      render 'new'
-    end
-  end 
 
   private
 
   # For item 
     def item_params
-      params.require(:item).permit(:name, :price, :description, :quantity, :year, :condition)
+      params.require(:item).permit(:name, :price, :description, :quantity, :year, :condition, :author, :image)
     end
     
     def cateid_params
       params.require(:cate_ids)
     end
     
-  # For transaction
-  
-    def transac_params
-    params.require(:transaction).permit(:user_id, :Buyquantity)
-    end
-    
-    def totalprice
-    @noquantity = params.require(:transaction).permit(:Buyquantity)
-    @totalprice = @noquantity * @item.price
-    end
-  
-  
     
     def correct_user
       @item = current_user.items.find_by(id: params[:id])

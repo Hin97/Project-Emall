@@ -118,20 +118,22 @@ p4 {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
+  font-size: 2.3em;
+  color: #ff5733;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: #fff;
+    color: #ff5733;
     text-decoration: none;
   }
 }
 
 
-
+#searchbar{
+  margin-top: 18px;
+  
+}
 
 
 /* footer */
