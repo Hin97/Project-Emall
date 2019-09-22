@@ -30,6 +30,8 @@ class ItemsController < ApplicationController
   
   def search
     @item = Item.where("name LIKE ?","%" + params[:q] + "%")
+    @last = Item.order("created_at desc").limit(10)
+    @keyword = params[:q]
   end
   
   
@@ -37,7 +39,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     flash[:success] = "Item deleted"
-    redirect_to request.referrer || root_url
+    redirect_to current_user
   end
   
 

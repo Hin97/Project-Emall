@@ -105,15 +105,12 @@ p4 {
   font-weight: bold;
   line-height: 2;
   text-align: center;
-  margin-right: 10px;
 }
 
 
 
-
-
-
 /* header */
+
 
 #logo {
   float: left;
@@ -141,6 +138,7 @@ p4 {
 footer {
   margin-top: 45px;
   padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
 }
 
 footer a {
@@ -221,7 +219,7 @@ aside {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input, textarea, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -259,6 +257,10 @@ input {
   }
 }
 
+.navbar-right .dropdown-menu{
+  right: auto;
+  left: 0;
+}
 
 .btn-primary{
 margin-right:15px;
@@ -394,14 +396,7 @@ span.picture {
   text-align: center;
 }
 
-/* voters */
-.thumb{
-  float:right;
-}
 
-.like:hover{
-text-decoration: none;
-}
 
 .checkboxtag{
 float: left;
@@ -412,11 +407,41 @@ input[type='checkbox'] {
   width: 20px;
 }
 
-.fa{
- visibility: hidden;
+
+
+
+/* render item's display*/ 
+.showbook{
+// display: inline-block;
+// padding-bottom: 20px;
 }
 
-.link:hover+.fa{
-  display: inline-block;
-  visibility: visible;
+.showbookimage{
+  float: top;
 }
+
+.showbookname{
+  text-align: center;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/* Search Bar */
+.lastest {
+  line-height: 1;
+}
+
+

@@ -1,6 +1,13 @@
 <% provide(:title, 'Search') %>
 
 <h1>Search Results</h1>
+<h2><%= @item.count %> results for <%= @keyword %></h2>
 <ol class="items">
+<% if @item.count == 0 %>
+<h3>No exact matches found</h3>
+
+<%= render @last %>
+<% else %>
 <%= render @item %>
+<% end %>
 </ol>

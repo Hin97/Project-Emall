@@ -4,11 +4,16 @@ class TradesController < ApplicationController
     
   # For trade
   def new
-    if ($current_item.nil?)
-    flash.now[:danger] = "Please selete a book to purchase"
+    if (@item.nil?)
+    flash[:danger] = "Please selete a book to purchase"
+    redirect_to current_user
+    else
+    if (current_user == @item.user)
+    flash[:danger] = current_user
     redirect_to current_user
     else
     @trade = Trade.new
+    end
     end
   end
 

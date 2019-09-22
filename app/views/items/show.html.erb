@@ -1,22 +1,34 @@
 <% provide(:title, @item.name) %>
 <div class="row">
     <section class="user_info">
-      <h5>
-        <%= @item.name %>
-      </h5>
+      <h5>Book Information</h5>
     </section>
-    
-      <ol class="items">
+    <!--item class start-->
+    <ol class="items">
           
     <!--row start-->
       <div class="row">
     <!--outside left start-->
+      <div class="col-md-4">
+      <div style="text-align: center;margin-top:50px;">
+      <div style= "margin-left:13px;"><%= gravatar_for @item.user, size: 150 %></div><br>
+      <p3>Posted By:</p3><br>
+      <p4><%= link_to @item.user.name, @item.user %></p4><br>
+      <br></br>
+      <p3>Email:</p3><br>
+      <p4><%= @item.user.email %></p4>
+      </div>
+      <!--outside left end-->
+      </div>
+      
+      
+      <!--outside right start-->
       <div class="col-md-8">
-    <!--Box start-->
+      <!--Box start-->
       <div style="background-color: #eaeaea; padding:20px; border: 1px solid gray; border-radius: 25px; height: 370px;">
-    <!--In box left start-->
+      <!--In box left start-->
       <div class="col-md-6">
-
+      <span class="name">Name: <%= @item.name %></span>
       <span class="price">Price: $<%= @item.price %></span>
       <span class="quantity">Quantity: <%= @item.quantity %></span>
       <span class="category">Category: 
@@ -35,10 +47,9 @@
       </div>
       <!--In box right start-->
       <div class="col-md-6">
-      <span style = "float:right">
-      <span style = "font-weight: bold;"> Book Cover:</span><br>
+      <span style = "font-weight: bold;"> Book Cover:</span>
+      <br></br>
       <%= image_tag @item.image.url if @item.image? %>
-      </span>
       <!--In box right end-->
       </div>
       <!--Box end-->
@@ -60,18 +71,7 @@
      <% if @item.quantity > 0 && current_user?(@item.user) == false%>
      <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>
      <% end %>
-      
-      <!--outside left end-->
-      </div>
-      
-      
-      <!--outside right start-->
-      <div class="col-md-4">
-      <div style="text-align: center;margin-top:50px;">
-      <div style= "margin-left:13px;"><%= gravatar_for @item.user, size: 150 %></div><br>
-      <p3>Posted By:</p3><br>
-      <p4><%= link_to @item.user.name, @item.user %></p4>
-      </div>
+        
       <!--outside right end-->
       </div>
       <!--row end-->

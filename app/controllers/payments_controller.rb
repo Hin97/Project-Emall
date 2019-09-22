@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
   def create
     @payment = @trade.build_payment(payment_params)
   if @payment.save
-    flash.now[:success] = "You have paid your order, Thank you!"
+    flash[:success] = "You have paid your order, Thank you!"
     @trade.status = true;
     reduce(@trade)
     $current_paymethod = nil

@@ -48,6 +48,9 @@
   <%= f.label "Total price:" %>
   $<%= @trade.totalprice %>
   <br>
+  
+  <a href="https://www.paypal.com/signin" class="link">Checkout with Paypal</a>
+  <br></br>
   <%= f.submit "Complete payment", class: "btn btn-success" %>
   <% end %>
 <% end %>
