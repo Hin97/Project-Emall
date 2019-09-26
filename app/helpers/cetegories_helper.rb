@@ -1,0 +1,2 @@
+module CetegoriesHelper
+end

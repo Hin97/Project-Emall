@@ -5,6 +5,7 @@ before_action :correct_user,   only: [:edit, :update]
   def show
     @user = User.find(params[:id])
     @items = @user.items.paginate(page: params[:page])
+    @width = 33.33
   end
 
   def new

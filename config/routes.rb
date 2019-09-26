@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'categories/new'
+
+  get 'categories/show'
+
   get 'payment/show'
   get 'search', to: 'items#search'
   get 'sessions/new'
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
  resources :users
  resources :items
  resources :trades
+ resources :categories
  
 
 end

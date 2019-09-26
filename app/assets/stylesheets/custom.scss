@@ -280,7 +280,8 @@ list-style: none;
   list-style: none;
   padding: 20px;
   li {
-    padding: 10px 0;
+    // padding: 10px 0;
+      text-align: center;
   }
   .itemname {
     font-weight: bold;
@@ -397,7 +398,6 @@ span.picture {
 }
 
 
-
 .checkboxtag{
 float: left;
 }
@@ -427,9 +427,9 @@ input[type='checkbox'] {
 /* Create three equal columns that floats next to each other */
 .column {
   float: left;
-  width: 33.33%;
   padding: 10px;
 }
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -442,6 +442,13 @@ input[type='checkbox'] {
 /* Search Bar */
 .lastest {
   line-height: 1;
+}
+
+/* Categories display*/
+.catdisplay {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 

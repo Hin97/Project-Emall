@@ -25,6 +25,8 @@ class ItemsController < ApplicationController
   
   def index
   @item = Item.all
+  @category = Category.all
+  @width = 33.33
   end
   
   

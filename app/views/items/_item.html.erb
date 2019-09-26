@@ -1,20 +1,21 @@
   <div id="item-<%= item.id %>">
       <div class="showbook">
-      <div class="column mb-2">
+      <div class="column" style="width: <%= @width %>%">
       <div style="background-color: #FFF9F9; padding:23px;  border: 1px solid gray;border-radius: 25px;">
       <span style="showbookimage">
       <%= image_tag item.image.url if item.image? %>
       </span>
       <br></br>
-      <a class="showbookname"><%= link_to item.name, item %></a>
-      <span class=""><%= item.author %></span>
+      <li><a class="showbookname"><%= link_to item.name, item %></a></li>
+      <li><%= item.author %></li>
       
-    
+      <li>
       <% if item.quantity>0 %>
       <span class="quantity">Quantity: In stock</span>
       <% else %>
       <span class="quantity">Quantity: Out of stock</span>
       <% end %>
+      </li>
       </div>
       </div>
       </div>

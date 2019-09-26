@@ -2,12 +2,15 @@
 
 <h1>Search Results</h1>
 <h2><%= @item.count %> results for <%= @keyword %></h2>
+<div class="row">
 <ol class="items">
 <% if @item.count == 0 %>
 <h3>No exact matches found</h3>
-
+<br></br>
+<h3>Check out our lastest books</h3>
 <%= render @last %>
 <% else %>
 <%= render @item %>
 <% end %>
 </ol>
+</div>
