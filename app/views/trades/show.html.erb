@@ -15,33 +15,55 @@
   <tr>
     <!--Left-->
     <td>
-<li><span style = "font-weight: bold;"> Book Cover:</span></li>
+        
+    <li><span style = "font-weight: bold;"> Book Cover:</span></li>
       <br>
       <%= image_tag(@trade.item.image.url, width: "80%") if @trade.item.image? %>
       <br></br>
-    <li><span class="name">Quantity: <%= @trade.buyquantity %></span></li>
-    <% if @trade.status == false %>
+      
+      
+      <% if @trade.item.user.eql?(current_user) %>
+      <li><span class="quantity">Quantity sold: <%= @trade.buyquantity %></span></li>
+      <% else %>
+      <li><span class="quantity">Quantity: <%= @trade.buyquantity %></span></li>
+      <% if @trade.status == false %>
       <li><span class="year" style="color: red">Status: Unpaid</span></li>
       <% else %>
       <li><span class="year" style="color: green">Status: paid</span></li>
       <% end %>    
+      <% end %>
+      
+      
     </td>
     
     <!--Right-->
     <td>
     
-    <li><span class="name">Book name: <%= link_to @trade.item.name , @trade.item %></span></li>
-    <li><span class="name">Book seller: <%= link_to @trade.item.user.name , @trade.item.user %></span></li></li>
-    <li><span class="name">Seller email: <%= @trade.item.user.email %></span></li>
-    <li><span class="name">Book in store: <%= @trade.item.quantity %></span></li>
+    <% if @trade.item.user.eql?(current_user) %>
+    <li><span class="quantity">Book name: <%= link_to @trade.item.name , @trade.item %></span></li>
+    <li><span class="quantity">Buyer: <%= link_to User.find(@trade.user_id).name , User.find(@trade.user_id) %></span></li>
+    <li><span class="quantity">Buyer email: <%= User.find(@trade.user_id).email %></span></li>    
+    <li><span class="quantity">Remaining stock: <%= @trade.item.quantity %></span></li>
+    <li><span class="quantity">Paying method: <%= @trade.paymethod %></span></li>    
+    <li><span class="quantity">Sold date:</span></li> 
+    <li><span class="timestamp">
+      <%= @trade.created_at %> 
+      </span></li>
+    <% else %>
+    <li><span class="quantity">Book name: <%= link_to @trade.item.name , @trade.item %></span></li>
+    <li><span class="quantity">Book seller: <%= link_to @trade.item.user.name , @trade.item.user %></span></li></li>
+    <li><span class="quantity">Seller email: <%= @trade.item.user.email %></span></li>
+    <li><span class="quantity">Book in store: <%= @trade.item.quantity %></span></li>
     <li><span class="timestamp">Purchased at: <%= @trade.created_at %></span></li>
-    <li><span class="name">Paying method: <%= @trade.paymethod %></span></li>
+    <li><span class="quantity">Paying method: <%= @trade.paymethod %></span></li>
     
      <% if @trade.status == false%>
      <%= link_to "Pay", edit_trade_path, class: " btn btn-lg btn-success" %>
      <%= link_to "Cancel", @trade, method: :delete, class: " btn btn-lg btn-success",
                                   data: { confirm: "You sure?" } %>    
-     <% end%>
+     <% end %>
+     <% end %>
+     
     </td>
   </tr>
 </table>

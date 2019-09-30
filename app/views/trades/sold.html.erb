@@ -1,6 +1,6 @@
-<% provide(:title, 'Purchased History') %>
+<% provide(:title, 'Sale History') %>
 
-<h5>Purchased History</h5>
+<h5>Sale History</h5>
 
 
 <ul class="nav nav-tabs">
@@ -13,7 +13,7 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
       <% @trade.each do |trade| %>
-      <% if trade.user_id.eql?(current_user.id)%>
+      <% if trade.item.user.eql?(current_user) && trade.status == true %>
       <!--Display each purchase here-->
        <!--Box start-->
       <% @count = true %>
@@ -22,15 +22,12 @@
       <div style="background-color: #eaeaea; padding:10px; border: 1px solid gray; border-radius: 25px; height: 180px;">
       <!--In box left start-->
       <div class="col-md-6">
-      <span class="name">Transaction ID: <%= link_to trade.id , trade %></span>
-      <span class="name">Book name: <%= link_to trade.item.name , trade.item %></span>
-      <span class="quantity">Quantity: <%= trade.buyquantity %></span>
-      <% if trade.status == false %>
-      <span class="year" style="color: red">Status: Unpaid</span>
-      <% else %>
-      <span class="year" style="color: green">Status: paid</span>
-      <% end %>
-      <span class="year">Purchased date:</span>
+      <span class="quantity">Transaction ID: <%= link_to trade.id , trade %></span>
+      <span class="quantity">Book name: <%= link_to trade.item.name , trade.item %></span>
+      <span class="quantity">Buyer: <%= link_to User.find(trade.user_id).name , User.find(trade.user_id) %></span>
+      <span class="quantity">Quantity sold: <%= trade.buyquantity %></span>
+      <span class="quantity">Total Price: $<%= trade.totalprice %></span>
+      <span class="quantity">Sold date:</span>
       <span class="timestamp">
       <%= trade.created_at %> 
       </span>
@@ -42,7 +39,7 @@
       <br>
       <%= image_tag(trade.item.image.url, width: "55%") if trade.item.image? %>
       <!--In box right end-->
-      <%= link_to "View detail" , trade %>
+      <%= link_to "View detail", trade %>
       </div>
       <!--Box end-->
       </div>
@@ -52,7 +49,7 @@
       <% end %>  
       
       <% if @count == false %>
-      <h4 style="text-align:center; padding-top: 10px;">You havn't purchase anything yet</h4>
+      <h4 style="text-align:center; padding-top:10px">You havn't sold anything yet</h4>
       <% end %>
       </div>
 </div>

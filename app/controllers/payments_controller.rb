@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_trade
-  before_action :logged_in_user,  only: [:new, :create,:show]  
+  before_action :logged_in_user,  only: [:new, :create, :show]  
   before_action :correct_user,   only: :show
  
   def new
@@ -25,14 +25,11 @@ class PaymentsController < ApplicationController
   end
   end
   
-
   def show
     @payment = Payment.find(params[:id])
   end
   
-  
-  
-  private 
+ private 
   
  def set_trade
  if ($current_trade.nil?)
@@ -56,9 +53,9 @@ class PaymentsController < ApplicationController
     end
   end
   
-      
     def correct_user
       @item = current_user.items.find_by(id: params[:id])
       redirect_to root_url if @item.nil?
     end
+    
 end

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
  get '/newtrade', to: 'trades#new'
  post '/newtrade', to: 'trades#create'
  get '/purchased', to: "trades#purchased"
+ get '/sold', to: "trades#sold"
  get  '/newpayment',  to: 'payments#new'
  post '/newpayment',  to: 'payments#create'
  get '/updatetrade', to: 'trades#edit'

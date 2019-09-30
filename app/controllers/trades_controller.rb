@@ -1,10 +1,8 @@
 class TradesController < ApplicationController
  before_action :set_item
- before_action :logged_in_user,    only: [:new, :create]  
-    
-    
-
- 
+ before_action :logged_in_user,    only: [:new, :create, :purchased, :sold, :show, :edit, :update, :destory]  
+ before_action :correct_buyer,   only: [:edit, :update, :destory]
+ before_action :correct_user,   only: :show
   # For trade
   def new
     if (@item.nil?)
@@ -36,10 +34,22 @@ class TradesController < ApplicationController
  
  def purchased
  @trade = Trade.all
+ @count = false
+ end
+ 
+ def sold
+ @trade = Trade.all
+ @count = false
  end
  
  def show
  @trade = Trade.find(params[:id])
+
+ if (@trade.item.user == current_user && @trade.status == false)
+ flash[:danger] = "You are not the correct user"
+ redirect_to current_user
+ end
+ 
  end
  
   def edit
@@ -94,5 +104,21 @@ class TradesController < ApplicationController
     @item = $current_item
    end
    
+    def correct_buyer
+    @trade = Trade.find(params[:id])
+    if (!(@trade.user_id == current_user.id))
+    flash[:danger] = "You are not the correct user"
+    redirect_to root_url 
+    end
+    end
+    
+    def correct_user
+    @trade = Trade.find(params[:id])
+    if (@trade.user_id == current_user.id || @trade.item.user == current_user)
+    else
+    flash[:danger] = "You are not the correct user"
+    redirect_to root_url 
+    end
+    end
 
 end
