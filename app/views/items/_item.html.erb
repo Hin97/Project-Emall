@@ -1,7 +1,7 @@
   <div id="item-<%= item.id %>">
       <div class="showbook">
       <div class="column" style="width: <%= @width %>%">
-      <div style="background-color: #FFF9F9; padding:23px;  border: 1px solid gray;border-radius: 25px;">
+      <div style="background-color: #FFF9F9; padding:20px;  border: 1px solid gray;border-radius: 25px;">
       <span style="showbookimage">
       <%= image_tag item.image.url if item.image? %>
       </span>
@@ -11,9 +11,9 @@
       
       <li>
       <% if item.quantity>0 %>
-      <span class="quantity">Quantity: In stock</span>
+      <span class="quantity" style="color: green;">Quantity: In stock</span>
       <% else %>
-      <span class="quantity">Quantity: Out of stock</span>
+      <span class="quantity" style="color: red;">Quantity: Out of stock</span>
       <% end %>
       </li>
       </div>

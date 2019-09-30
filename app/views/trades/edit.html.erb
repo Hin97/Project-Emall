@@ -1,4 +1,4 @@
-<% provide(:title, "New Trade") %>
+<% provide(:title, "Edit Trade") %>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
     <section class="user_info">
@@ -12,37 +12,37 @@
      <div class="col-md-4">
       <div style="background-color: #eaeaea; padding:20px;  border: 1px solid gray;border-radius: 25px;">        
       <div style="text-align: center;">
-      <%= image_tag @item.image.url if @item.image? %>
+      <%= image_tag @trade.item.image.url if @trade.item.image? %>
       <br></br>
-      <span class="name">Name: <%= @item.name %></span>
-      <span class="year">Year: <%= @item.year %></span>
-      <span class="condition">Condition: <%= @item.condition %></span>
+      <span class="name">Name: <%= @trade.item.name %></span>
+      <span class="year">Year: <%= @trade.item.year %></span>
+      <span class="condition">Condition: <%= @trade.item.condition %></span>
       </div>
       </div>
       </div>
 
       <div class="col-md-8">
       <div style="background-color: #eaeaea; padding:20px;  border: 1px solid gray;border-radius: 25px;">  
-     <span class="price">Price: $<%= @item.price %></span>
+     <span class="price">Price: $<%= @trade.item.price %></span>
       <span class="category">Category: 
-      <% @item.category_ids.each do |id| %>
+      <% @trade.item.category_ids.each do |id| %>
        "<%= Category.find(id).name %>"
       <% end %>
       </span>
-      <span class="name">Seller: <%= link_to @item.user.name, @item.user %></span>
-      <span class="name">Books in stock: <%= @item.quantity%></span>
+      <span class="name">Seller: <%= link_to @trade.item.user.name, @trade.item.user %></span>
+      <span class="name">Books in stock: <%= @trade.item.quantity%></span>
     <%= form_for(@trade) do |f| %>
       <%= render 'shared/error_messages', object: @trade %>
           <%= f.label "Quantity" %>:
           <br>
-          <%= f.number_field :buyquantity, max: @item.quantity, min: 1, style: "width:10%" %>
+          <%= f.number_field :buyquantity, max: @trade.item.quantity, min: 1, style: "width:10%" %>
           <br>
         <%= f.label "Paying method" %>:
           <br>
         <%= f.select(:paymethod, Trade::TYPE_LIST )  %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
           <br></br>
-    <%= f.submit "Pay", class: "btn btn-lg btn-success", style: "width:20%" %>
+     <%= f.submit "Pay", class: "btn btn-lg btn-success", style: "width:20%" %>
      <% end %>
       </div>
             <br></br>

@@ -1,0 +1,55 @@
+<% provide(:title, 'Purchased History') %>
+
+<h5>Purchased History</h5>
+
+
+<ul class="nav nav-tabs">
+    <li> <%= link_to "Purchased", purchased_path %> </li>
+    <li>  </li>
+</ul>
+
+    
+
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+      <% @trade.each do |trade| %>
+      <% if trade.user_id.eql?(current_user.id)%>
+      <!--Display each purchase here-->
+       <!--Box start-->
+
+       <ol class="items">
+
+      <div style="background-color: #eaeaea; padding:10px; border: 1px solid gray; border-radius: 25px; height: 180px;">
+      <!--In box left start-->
+      <div class="col-md-6">
+      <span class="name">Transaction ID: <%= link_to trade.id , trade %></span>
+      <span class="name">Book name: <%= link_to trade.item.name , trade.item %></span>
+      <span class="quantity">Quantity: <%= trade.buyquantity %></span>
+      <% if trade.status == false %>
+      <span class="year" style="color: red">Status: Unpaid</span>
+      <% else %>
+      <span class="year" style="color: green">Status: paid</span>
+      <% end %>
+      <span class="year">Purchased date:</span>
+      <span class="timestamp">
+      <%= trade.created_at %> 
+      </span>
+      <!--In box left end-->
+      </div>
+      <!--In box right start-->
+      <div class="col-md-6" >
+      <span style = "font-weight: bold;"> Book Cover:</span>
+      <br>
+      <%= image_tag(trade.item.image.url, width: "55%") if trade.item.image? %>
+      <!--In box right end-->
+      <%= link_to "View detail" , trade %>
+      </div>
+      <!--Box end-->
+      </div>
+
+</ol>
+      <% end %>
+      <% end %>  
+      </div>
+</div>
+

@@ -19,6 +19,8 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 30px;
+  min-width: 1328px;
+  height: auto;
 }
 
 section {
@@ -452,3 +454,24 @@ input[type='checkbox'] {
 }
 
 
+
+/* table that use to display transaction information*/ 
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+
+/* Use for display transaction information*/ 
+.centralize {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px;
+}

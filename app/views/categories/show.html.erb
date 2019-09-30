@@ -15,10 +15,13 @@
 <ol class="items">
 <% @item.each do |item| %>
 <% if item.category_ids.include?(@category.id)%>
+<% @count = true %>
 <%= render item %>
 <% end %>
 <% end %>
-
 </ol>
+<% if @count == false %>
+<h4 style="text-align:center;">There are no books in this category</h4>
+<% end %>
 </div>
 </div>

@@ -13,5 +13,4 @@ def proceed(trade)
     $current_paymethod = trade.paymethod
 end
 
-
 end
