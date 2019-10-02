@@ -2,6 +2,7 @@ class TradesController < ApplicationController
  before_action :set_item
  before_action :logged_in_user,    only: [:new, :create, :purchased, :sold, :show, :edit, :update, :destory]  
  before_action :correct_buyer,   only: [:edit, :update, :destory]
+ before_action :admin_no_transactions,   only: [:new, :create,:edit, :update]
  before_action :correct_user,   only: :show
   # For trade
   def new
@@ -59,7 +60,7 @@ class TradesController < ApplicationController
     redirect_to purchased_path
     end
     if (@trade.item.quantity) == 0
-    flash[:danger] = "The book you looking for is run out of stock, The order have been canceled"
+    flash[:danger] = "The book you looking for is run out of stock or has been take off, Your order have been canceled"
     @trade.destroy
     redirect_to purchased_path
     end
@@ -114,11 +115,18 @@ class TradesController < ApplicationController
     
     def correct_user
     @trade = Trade.find(params[:id])
-    if (@trade.user_id == current_user.id || @trade.item.user == current_user)
+    if (@trade.user_id == current_user.id || @trade.item.user == current_user || current_user.admin?)
     else
     flash[:danger] = "You are not the correct user"
     redirect_to root_url 
     end
+    end
+    
+       def admin_no_transactions
+      if current_user.admin?
+      flash[:danger]= "Admin cannot make any payments"
+      redirect_to current_user
+      end
     end
 
 end

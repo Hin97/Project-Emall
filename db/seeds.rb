@@ -12,3 +12,9 @@ Category.create(name: 'Guide');
 Category.create(name: 'Horror');
 Category.create(name: 'Science');
 Category.create(name: 'Other');
+User.create!(name:  "Admin",
+             email: "admin@emall.com",
+             password:              "passwordemall",
+             password_confirmation: "passwordemall",
+             admin: true);
+

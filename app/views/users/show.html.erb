@@ -3,20 +3,50 @@
     <section class="user_info">
       <h5> User information</h5>
     </section>
+
     <!--item class start-->
     <ol class="items">
 
       <!--row start-->
       <div class="row">
-    <!--outside left start-->
-      <div class="col-md-3">
-      <div style="text-align: center;margin-top:50px;">
+       <!--display for admin user-->
+    <% if current_user.admin? && current_user.eql?(@user) %>
+  <div class="col-md-6 col-md-offset-3">
+          <div style="text-align: center;;">
       <div style= "margin-left:13px;"><%= gravatar_for @user, size: 150 %></div><br>
-      <p3>About seller:</p3><br>
+      <% if current_user.eql?(@user) %>
+      <p3>About yourself:</p3><br>
+      <% else %>
+      <p3>About user:</p3><br>
+      <% end %>
       <p4><%= link_to @user.name, @user %></p4><br>
       
       <p3>Email:</p3><br>
       <p4><%= @user.email %></p4>
+
+      </div>
+  </div>  
+    
+    <!--display for normal user-->
+     <% else %>    
+    <!--outside left start-->
+      <div class="col-md-3">
+      <div style="text-align: center;margin-top:50px;">
+      <div style= "margin-left:13px;"><%= gravatar_for @user, size: 150 %></div><br>
+      <% if current_user.eql?(@user) %>
+      <p3>About yourself:</p3><br>
+      <% else %>
+      <p3>About user:</p3><br>
+      <% end %>
+      <p4><%= link_to @user.name, @user %></p4><br>
+      
+      <p3>Email:</p3><br>
+      <p4><%= @user.email %></p4>
+      <br>
+  <% if current_user.admin? && !current_user?(@user) %>
+     <%= link_to "Delete User", @user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
       </div>
       <!--outside left end-->
       </div>
@@ -35,6 +65,8 @@
       <% end %>
       <!--outside right end-->
       </div>
+      <!--display for normal user end-->
+      <% end %>
       <!--row end-->
       </div>
       <!--item class end-->

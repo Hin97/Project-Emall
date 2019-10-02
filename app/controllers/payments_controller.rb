@@ -1,6 +1,7 @@
 class PaymentsController < ApplicationController
   before_action :set_trade
-  before_action :logged_in_user,  only: [:new, :create, :show]  
+  before_action :logged_in_user,  only: [:new, :create, :show]
+  before_action :admin_no_payment,   only: [:new, :create]
   before_action :correct_user,   only: :show
  
   def new
@@ -58,4 +59,10 @@ class PaymentsController < ApplicationController
       redirect_to root_url if @item.nil?
     end
     
+    def admin_no_payment
+      if current_user.admin?
+      flash[:danger]= "Admin cannot make any payments"
+      redirect_to current_user
+      end
+    end
 end

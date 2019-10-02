@@ -4,16 +4,16 @@
       <%= f.text_field :name %>
 
       <%= f.label :price %>$
-      <%= f.text_field :price, placeholder: "In USD" %>
+      <%= f.number_field :price, placeholder: "In USD" %>
 
       <%= f.label :author %>
       <%= f.text_field :author %>
             
       <%= f.label :quantity %>
-      <%= f.text_field :quantity %>
+      <%= f.number_field:quantity %>
       
       <%= f.label "Year published" %>
-      <%= f.text_field :year %>
+      <%= f.number_field :year, min: 1800, max: Time.now.year %>
       
       <%= f.label :condition %>
       <br>

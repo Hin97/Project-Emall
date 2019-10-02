@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy, :edit, :update]
-  before_action :correct_user,   only: [:destroy,:edit, :update]
+  before_action :admin_no_posts,   only: [:new, :create, :edit, :update]
+  before_action :correct_user,   only: [:destroy, :edit, :update]
 
 #Controller for items related 
 
@@ -39,9 +40,9 @@ class ItemsController < ApplicationController
   
   
   def destroy
-    @item.destroy
+    Item.find(params[:id]).destroy
     flash[:success] = "Item deleted"
-    redirect_to current_user
+    redirect_to items_path
   end
   
   def edit
@@ -75,7 +76,10 @@ class ItemsController < ApplicationController
     
     def correct_user
       @item = current_user.items.find_by(id: params[:id])
-      redirect_to root_url if @item.nil?
+    if !(@item.nil?) || current_user.admin?
+    else
+      redirect_to root_url
+    end
     end
     
     # Confirms a logged-in user.
@@ -84,6 +88,13 @@ class ItemsController < ApplicationController
       store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
+      end
+    end
+    
+    def admin_no_posts
+      if current_user.admin?
+      flash[:danger]= "Admin cannot make any posts"
+      redirect_to current_user
       end
     end
     
