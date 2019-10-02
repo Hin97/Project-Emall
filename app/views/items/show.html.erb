@@ -61,7 +61,7 @@
      <% if current_user?(@item.user) %>
       <%= link_to "Take down", @item, method: :delete, class: " btn btn-lg btn-success",
                                        data: { confirm: "You sure?" } %>
-     
+     <%= link_to "Edit", edit_item_path(@item) , class: " btn btn-lg btn-success" %>
 
      <% end %>
      <% end %>
