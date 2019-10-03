@@ -12,7 +12,7 @@
        <!--display for admin user-->
     <% if current_user.admin? && current_user.eql?(@user) %>
   <div class="col-md-6 col-md-offset-3">
-          <div style="text-align: center;;">
+      <div style="text-align: center;">
       <div style= "margin-left:13px;"><%= gravatar_for @user, size: 150 %></div><br>
       <% if current_user.eql?(@user) %>
       <p3>About yourself:</p3><br>

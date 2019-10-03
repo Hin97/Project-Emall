@@ -1,0 +1,25 @@
+<% provide(:title, "Help & Contact") %>
+<div class="row">
+    <section class="user_info">
+      <h5>Help & Contact</h5>
+    </section>
+    
+    
+  <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div style="background-color: #eaeaea; padding:15px;  width: 100%;">
+    <div style="text-align: center;">
+      <div style= "margin-left:13px;"><%= gravatar_for @user, size: 150 %></div><br>
+      <p3>About Our staff:</p3><br>
+      <p4><%= link_to @user.name, @user %></p4><br>
+      <p3>Email:</p3><br>
+      <p4><%= @user.email %></p4><br>
+      <p3>Address:</p3><br>
+      <p4>123 ABC Street Melbourne CBD, 3000</p4><br>
+      <p3>Business phone:</p3><br>
+      <p4>03 9876 5432</p4><br>
+      <p1>If you have any enquries, feel free to contact our staff at any time through email</p1>
+    </div>
+  </div>
+</div>
+</div>
