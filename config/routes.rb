@@ -30,5 +30,10 @@ Rails.application.routes.draw do
  resources :categories
  resources :static_pages
  
+ 
+get ':status', to: 'errors#show' 
+get '/404' , to: 'errors#show'
+get "*path" , to: 'errors#show'
+
 
 end

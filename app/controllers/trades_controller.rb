@@ -1,10 +1,12 @@
 class TradesController < ApplicationController
  before_action :set_item
  before_action :logged_in_user,    only: [:new, :create, :purchased, :sold, :show, :edit, :update, :destory]  
+ before_action :exist_trade, only: [:edit, :update, :destory, :show]
  before_action :correct_buyer,   only: [:edit, :update, :destory]
  before_action :admin_no_transactions,   only: [:new, :create,:edit, :update]
  before_action :correct_user,   only: :show
-  # For trade
+ 
+ # For trade
   def new
     if (@item.nil?)
     flash[:danger] = "Please selete a book to purchase"
@@ -45,12 +47,10 @@ class TradesController < ApplicationController
  
  def show
  @trade = Trade.find(params[:id])
-
  if (@trade.item.user == current_user && @trade.status == false)
- flash[:danger] = "You are not the correct user"
+ flash[:danger] = "You don't have the permission!"  
  redirect_to current_user
  end
- 
  end
  
   def edit
@@ -122,11 +122,20 @@ class TradesController < ApplicationController
     end
     end
     
-       def admin_no_transactions
+      def admin_no_transactions
       if current_user.admin?
       flash[:danger]= "Admin cannot make any payments"
       redirect_to current_user
       end
+      end
+      
+    def exist_trade
+    @trade = Trade.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    if @trade.nil?
+    redirect_to root_url
+    flash[:danger]= "Transaction is not exist"
+    end
     end
 
 end

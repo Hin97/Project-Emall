@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy, :edit, :update]
+  before_action :exist_item, only: [:edit, :update, :destory, :show]
   before_action :admin_no_posts,   only: [:new, :create, :edit, :update]
   before_action :correct_user,   only: [:destroy, :edit, :update]
 
@@ -78,6 +79,7 @@ class ItemsController < ApplicationController
       @item = current_user.items.find_by(id: params[:id])
     if !(@item.nil?) || current_user.admin?
     else
+      flash[:danger] = "You don't have the permission!"      
       redirect_to root_url
     end
     end
@@ -96,6 +98,15 @@ class ItemsController < ApplicationController
       flash[:danger]= "Admin cannot make any posts"
       redirect_to current_user
       end
+    end
+    
+    def exist_item
+    @item = Item.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    if @item.nil?
+    redirect_to root_url
+    flash[:danger]= "Item is not exist"
+    end
     end
     
 end
