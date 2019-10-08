@@ -29,11 +29,13 @@ class PaymentsController < ApplicationController
   protect_from_forgery except: [:hook]
   def hook
     params.permit! # Permit all Paypal input params
+    if (Payment.find(params[:invoice]).status.nil?)
     status = params[:payment_status]
     if status == "Completed"
       @payment = Payment.find(params[:invoice])
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
+    end
     end
     render nothing: true
   end
