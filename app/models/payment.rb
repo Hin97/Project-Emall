@@ -16,8 +16,5 @@ class Payment < ApplicationRecord
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
-  
-  def return_url(link)
-    "https://ipnpb.paypal.com/cgi-bin/webscr?cmd=_notify-validate&" + link
-  end
+
 end
