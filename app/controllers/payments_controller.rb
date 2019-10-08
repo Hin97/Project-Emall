@@ -31,7 +31,6 @@ class PaymentsController < ApplicationController
     params.permit! # Permit all Paypal input params
     if (params == "INVALID")
     flash[:danger] = "message not equal"
-    redirect_to current_user
     end
     
     if !(params == "VERIFIED")
