@@ -35,8 +35,7 @@ class PaymentsController < ApplicationController
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
     end
-    flash[:danger] = "Payment unsuccessful!"
-    redirect_to current_user
+    render nothing: true
   end
   
  private 
