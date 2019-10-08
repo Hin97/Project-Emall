@@ -25,10 +25,14 @@
       <span class="name">Transaction ID: <%= link_to trade.id , trade %></span>
       <span class="name">Book name: <%= link_to trade.item.name , trade.item %></span>
       <span class="quantity">Quantity: <%= trade.buyquantity %></span>
-      <% if trade.status == false %>
+      <% if trade.payment.nil? %>
+      <span class="year" style="color: red">Status: Unpaid</span>
+      <% else %>
+      <% if trade.payment.status.nil? %>
       <span class="year" style="color: red">Status: Unpaid</span>
       <% else %>
       <span class="year" style="color: green">Status: paid</span>
+      <% end %>
       <% end %>
       <span class="year">Purchased date:</span>
       <span class="timestamp">

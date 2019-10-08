@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'payment/show'
   post "/payments/:id" => "payments#show"
   post "/hook" => "payments#hook"
+  get 'search', to: 'items#search'
   get 'sessions/new'
 
  root 'static_pages#home'
@@ -35,7 +36,6 @@ Rails.application.routes.draw do
 get ':status', to: 'errors#show' 
 get '/404' , to: 'errors#show'
 get "*path" , to: 'errors#show'
-post "/payments/:id" => "payments#show"
 
 
 end

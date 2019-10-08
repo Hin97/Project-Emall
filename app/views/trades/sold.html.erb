@@ -13,7 +13,8 @@
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
       <% @trade.each do |trade| %>
-      <% if trade.item.user.eql?(current_user) && trade.status == true %>
+      <% if !(trade.payment.nil?) %>
+      <% if trade.item.user.eql?(current_user) && !(trade.payment.status.nil?) %>
       <!--Display each purchase here-->
        <!--Box start-->
       <% @count = true %>
@@ -43,8 +44,8 @@
       </div>
       <!--Box end-->
       </div>
-
 </ol>
+      <% end %>
       <% end %>
       <% end %>  
       

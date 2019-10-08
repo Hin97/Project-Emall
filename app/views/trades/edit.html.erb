@@ -37,9 +37,6 @@
           <br>
           <%= f.number_field :buyquantity, max: @trade.item.quantity, min: 1, style: "width:10%" %>
           <br>
-        <%= f.label "Paying method" %>:
-          <br>
-        <%= f.select(:paymethod, Trade::TYPE_LIST )  %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
           <br></br>
      <%= f.submit "Pay", class: "btn btn-lg btn-success", style: "width:20%" %>

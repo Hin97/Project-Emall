@@ -5,7 +5,7 @@ class CreatePayments < ActiveRecord::Migration[5.1]
       t.string :username
       t.string :email
       t.text :notification_params
-      t.string :status
+      t.string :status, default: nil
       t.datetime :purchased_at
       t.string :transaction_id
       t.timestamps

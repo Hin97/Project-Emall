@@ -55,7 +55,7 @@ class TradesController < ApplicationController
  
   def edit
     @trade = Trade.find(params[:id])
-    if (@trade.status == true)
+    if !(@trade.payment.status.nil?)
     flash[:danger] = "You have already paid for the transaction"
     redirect_to purchased_path
     end
