@@ -1,7 +1,5 @@
 class Payment < ApplicationRecord
   belongs_to :trade
-
-  serialize :notification_params, Hash
   
   def paypal_url(return_path)
     values = {
