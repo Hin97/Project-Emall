@@ -36,6 +36,9 @@ class PaymentsController < ApplicationController
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
     end
+    render nothing: true
+    else
+    render nothing: true 
     end
     render nothing: true
   end
