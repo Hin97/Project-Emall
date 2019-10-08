@@ -1,33 +1,41 @@
 class PaymentsController < ApplicationController
   before_action :set_trade
-  before_action :logged_in_user,  only: [:new, :create, :show]
+  before_action :set_payment, only:[:show, :edit, :update]
+  before_action :logged_in_user,  only: [:new, :create, :show, :edit, :update]
   before_action :admin_no_payment,   only: [:new, :create]
-  before_action :correct_user,   only: :show
+  before_action :correct_user,   only: [:show, :edit, :update]
  
   def new
-  if (@trade.status == false)
+  # if (@trade.payment.status == false)
     @payment = Payment.new
-  else
-    flash[:danger] = "You have already paid for this transaction"
-  end
+  # else
+  #   flash[:danger] = "You have already paid for this transaction"
+  # end
   end
 
   def create
-    @payment = @trade.build_payment(payment_params)
+  @payment = @trade.build_payment(payment_params)
   if @payment.save
-    flash[:success] = "You have paid your order, Thank you!"
-    @trade.update_attributes(status: true);
-    reduce(@trade)
-    $current_paymethod = nil
-    $current_trade = nil
-    redirect_to current_user
+  redirect_to @payment.paypal_url(payment_path(@payment))
   else
-    render 'new'
+  render 'new'
   end
   end
   
   def show
-    @payment = Payment.find(params[:id])
+  @payment = Payment.find(params[:id])
+  end
+  
+  protect_from_forgery except: [:hook]
+  def hook
+    params.permit! # Permit all Paypal input params
+    status = params[:payment_status]
+    if status == "Completed"
+      @payment = Payment.find params[:invoice]
+      @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
+      reduce(@payment.trade)
+    end
+    render nothing: true
   end
   
  private 
@@ -40,8 +48,13 @@ class PaymentsController < ApplicationController
  end
  end
   
+    # Use callbacks to share common setup or constraints between actions.
+    def set_payment
+      @payment = Payment.find(params[:id])
+    end
+  
     def payment_params
-    params.require(:payment).permit(:cardname, :cardnumber, :expmm, :expyy, :cvv)
+    params.require(:payment).permit(:username, :email)
     end
 
   
@@ -55,8 +68,12 @@ class PaymentsController < ApplicationController
   end
   
     def correct_user
-      @item = current_user.items.find_by(id: params[:id])
-      redirect_to root_url if @item.nil?
+    @payment = Payment.find_by(id: params[:id])
+    if (@payment.username == current_user.name && @payment.email == current_user.email)
+    else
+    flash[:danger] = "You don't have the permission"
+    redirect_to root_url 
+    end
     end
     
     def admin_no_payment

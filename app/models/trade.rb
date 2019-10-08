@@ -4,9 +4,6 @@ class Trade < ApplicationRecord
     validates :user_id, presence: true
     validates :buyquantity, presence: true
     validates :totalprice, presence: true
-    validates :paymethod, presence: true
-    
-    TYPE_LIST = ["Credit Card", "Paypal"]
     
     
     

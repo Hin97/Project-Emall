@@ -10,7 +10,6 @@ end
 
 def proceed(trade)
     $current_trade = trade
-    $current_paymethod = trade.paymethod
 end
 
 end

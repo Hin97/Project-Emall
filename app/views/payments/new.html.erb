@@ -2,58 +2,26 @@
 
 <div class="row">
   <div class="col-md-4 col-md-offset-4" >
+        <section class="user_info">
+      <h5>
+      Purchase information
+      </h5>
+    </section>
   <%= form_for(@payment, url: newpayment_path) do |f| %>
-  <%= render 'shared/error_messages', object: @payment %>
-  
-  <% if @trade.paymethod.eql?("Credit Card") %>
-  
-  <h5>Credit Card detail</h5>
-  
-  <%= f.label "Cardnumber" %>
-  <br>
-  <%= f.text_field :cardnumber , style: 'width:50%'%>
-  <br>
-  <%= f.label "Expire date"  %> &emsp;&emsp;&emsp;&emsp;&nbsp;
-  <%= f.label "CVV"  %>
-  <br>
-   <!--f.select :expmm, (1..12).to_a, selected: 1 , style: 'width:10%'-->
-  <%= f.text_field :expmm , style: 'width:10%', placeholder: "mm" %>
-  <%= f.text_field :expyy , style: 'width:10%', placeholder: "yy"%>&emsp;&emsp;&emsp;&emsp;
-  <%= f.text_field :cvv , style: 'width:10%'%>
-  <br>
-  
-  <%= f.label "Name on Card" %>
-  <br>
-  <%= f.text_field :cardname , style: 'width:50%'%>
-  <br>
-  <%= f.label "Total price:" %>
-  $<%= @trade.totalprice %>
-  <br>
-  
-  <%= f.submit "Complete payment", class: "btn btn-success" %>
-  <% end %>
-  <% if @trade.paymethod.eql?("Paypal") %>
-  
-  <h5>Paypal Link</h5>
-    
-  <%= f.label "Paypal" %>
-  <!--Paypal link here-->
-  <%= f.hidden_field :cardnumber, value: nil%>
-  <%= f.hidden_field :cardname, value: nil%>
-  <%= f.hidden_field :expmm, value: nil%>
-  <%= f.hidden_field :expyy, value: nil%>
-  <%= f.hidden_field :cvv, value: nil%>
 
+  <p>Username: <%= current_user.name %></p>
+  <p>Email: <%= current_user.email %></p>
+  <p>Purchase quantity: <%= @trade.buyquantity %></p>
+  <p>Book price: <%= @trade.item.price %></p>  
+  <%= f.hidden_field :username, :value => current_user.name %>
+  <%= f.hidden_field :email, :value => current_user.email %>
   <br>
   <%= f.label "Total price:" %>
   $<%= @trade.totalprice %>
-  <br>
-  
-  <a href="https://www.paypal.com/signin" class="link">Checkout with Paypal</a>
   <br></br>
-  <%= f.submit "Complete payment", class: "btn btn-success" %>
+  <%= f.submit "Proceed Payment", class: "btn", style: "color: white;background: rgb(242, 118, 73);" %>
   <% end %>
-<% end %>
+
 
   </div>
 </div>

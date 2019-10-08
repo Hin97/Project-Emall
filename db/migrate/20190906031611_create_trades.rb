@@ -4,8 +4,6 @@ class CreateTrades < ActiveRecord::Migration[5.1]
       t.integer :user_id
       t.integer :buyquantity
       t.float :totalprice
-      t.string :paymethod
-      t.boolean :status, :default => false
       t.references :item, foreign_key: true
       
 

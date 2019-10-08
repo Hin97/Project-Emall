@@ -29,11 +29,13 @@ Rails.application.routes.draw do
  resources :trades
  resources :categories
  resources :static_pages
- 
+ resources :payments
  
 get ':status', to: 'errors#show' 
 get '/404' , to: 'errors#show'
 get "*path" , to: 'errors#show'
+ post "/payments/:id" => "payments#show"
+ post "/hook" => "payments#hook"
 
 
 end

@@ -33,9 +33,79 @@ class ItemsController < ApplicationController
   
   
   def search
-    @item = Item.where("name LIKE ?","%" + params[:q] + "%")
-    @last = Item.order("created_at desc").limit(10)
+    # Define keyword for search 
     @keyword = params[:q]
+    # Split keywork into array
+    @split = @keyword.split(" ")
+    # split size
+    @size = @split.size
+    
+    
+    #Book start
+    @itemA = Item.where("name LIKE ?","%" + @keyword + "%")
+    # Initial an array  
+    @showbook = []
+    @x = 0
+    # while loop
+    while @x < @size
+    @item = Item.where("name LIKE ?","%" + @split[@x] + "%")
+    @item.each do |item|
+    if @showbook.include?(item.id) == false
+    @showbook.push(item.id)
+    # end push loop
+    end
+    # end each loop
+    end
+    @x += 1
+    # end while loop
+    end
+    @items = Item.where(id:@showbook)
+    # Find books based on book name with keywork    
+    @last = Item.order("created_at desc").limit(10)
+    # Book end
+    
+    # Category start
+    @cate = Category.where("name LIKE ?","%" + @keyword + "%")
+    # Initial an array  
+    @showcate = []
+    @y = 0
+    # while loop
+    while @y < @size
+    @category = Category.where("name LIKE ?","%" + @split[@y] + "%")
+    @category.each do |cate|
+    if @showcate.include?(cate.id) == false
+    @showcate.push(cate.id)
+    # end push loop
+    end
+    # end each loop
+    end
+    @y += 1
+    # end while loop
+    end
+    @categories = Category.where(id:@showcate)
+    # Category end
+    
+    # Author start
+    @auth = Item.where("author LIKE ?","%" + @keyword + "%")
+    # Initial an array  
+    @showauthor = []
+    @z = 0
+    # while loop
+    while @z < @size
+    @author = Item.where("author LIKE ?","%" + @split[@z] + "%")
+    @author.each do |auth|
+    if @showauthor.include?(auth.id) == false
+    @showauthor.push(auth.id)
+    # end push loop
+    end
+    # end each loop
+    end
+    @z += 1
+    # end while loop
+    end
+    @authors = Item.where(id:@showauthor)
+    # Author end
+    
   end
   
   

@@ -1,2 +1,21 @@
-<h1>Payment#show</h1>
-<p>Find me in app/views/payment/show.html.erb</p>
+<% provide(:title, 'Payment Info') %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4" >
+        <section class="user_info">
+      <h5>
+      Payment complete!
+      </h5>
+    </section>
+
+  <p>Book name: <%= @payment.trade.item.name%></p>
+  <p>Book price: <%= @payment.trade.item.price %></p>  
+  <p>Purchase quantity: <%= @payment.trade.buyquantity %></p>
+  <p>Total price: $<%= @payment.trade.totalprice %></p>
+  <p>Payment status: <%= @payment.status %></p>
+  <p>Payment date: <%= @payment.purchased_at %></p>
+  <p>Payment id: <%= @payment.transaction_id%></p>
+
+  <%= link_to "Done!", items_path, class: " btn btn-lg btn-primary" %>
+  </div>
+</div>

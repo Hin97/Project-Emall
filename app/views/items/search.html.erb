@@ -1,16 +1,63 @@
 <% provide(:title, 'Search') %>
 
 <h5>Search Results</h5>
-<h2><%= @item.count %> results for <%= @keyword %></h2>
+
 <div class="row">
+<!--Book-->
+<h4><font color="green">Book</font></h4>
+<h2><%= @itemA.count %> results for <%= @keyword %></h2>
 <ol class="items">
-<% if @item.count == 0 %>
+<% if @itemA.count == 0 %>
 <h3>No exact matches found</h3>
 <br></br>
-<h3>Check out our lastest books</h3>
-<%= render @last %>
+<% if @items.count != 0%>
+<h3>Results matching fewer words</h3>
+<%= render @items %>
+<% end %>
 <% else %>
-<%= render @item %>
+<%= render @itemA %>
+<% end %>
+</ol>
+</div>
+<br></br>
+<!--Category-->
+<div class="row">
+<h4><font color="green">Category</font></h4>
+<h2><%= @cate.count %> results for <%= @keyword %></h2>
+<% if @cate.count == 0 %>
+<h3>No exact matches found</h3>
+<br></br>
+<% if @categories.count != 0%>
+<h3>Results matching fewer words</h3>
+      <% @categories.each do |category| %>
+      <li class="catesearch">
+      <%= link_to category.name ,category %>
+      </li>
+      <% end %>
+<% end %>
+<% else %>
+      <% @cate.each do |category| %>
+      <li class="catesearch">
+      <%= link_to category.name ,category %>
+      </li>
+      <% end %>
+<% end %>
+</div>
+<br></br>
+<div class="row">
+<!--Book-->
+<h4><font color="green">Author</font></h4>
+<h2><%= @auth.count %> results for <%= @keyword %></h2>
+<ol class="items">
+<% if @auth.count == 0 %>
+<h3>No exact matches found</h3>
+<br></br>
+<% if @authors.count != 0%>
+<h3>Results matching fewer words</h3>
+<%= render @authors %>
+<% end %>
+<% else %>
+<%= render @auth %>
 <% end %>
 </ol>
 </div>

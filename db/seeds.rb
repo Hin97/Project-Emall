@@ -17,4 +17,11 @@ User.create!(name:  "Admin",
              password:              "passwordemall",
              password_confirmation: "passwordemall",
              admin: true);
-
+User.create!(name:  "Jack",
+             email: "myemail@123.com",
+             password:              "abcd1234",
+             password_confirmation: "abcd1234");
+User.create!(name:  "Cyril",
+             email: "youremail@123.com",
+             password:              "abcd1234",
+             password_confirmation: "abcd1234");

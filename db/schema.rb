@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20191002041104) do
     t.integer "quantity"
     t.integer "year"
     t.string "condition"
+    t.boolean "count", default: false
+    t.boolean "view", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,12 +44,13 @@ ActiveRecord::Schema.define(version: 20191002041104) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string "cardname"
-    t.string "cardnumber"
-    t.integer "expmm"
-    t.integer "expyy"
-    t.integer "cvv"
     t.integer "trade_id"
+    t.string "username"
+    t.string "email"
+    t.text "notification_params"
+    t.string "status"
+    t.datetime "purchased_at"
+    t.string "transaction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trade_id", "created_at"], name: "index_payments_on_trade_id_and_created_at"
@@ -58,8 +61,6 @@ ActiveRecord::Schema.define(version: 20191002041104) do
     t.integer "user_id"
     t.integer "buyquantity"
     t.float "totalprice"
-    t.string "paymethod"
-    t.boolean "status", default: false
     t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

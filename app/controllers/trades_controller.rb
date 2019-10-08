@@ -88,7 +88,7 @@ class TradesController < ApplicationController
  
  # For trade
     def transac_params
-    params.require(:trade).permit(:user_id, :buyquantity, :paymethod)
+    params.require(:trade).permit(:user_id, :buyquantity)
     end
     
     
@@ -117,7 +117,7 @@ class TradesController < ApplicationController
     @trade = Trade.find(params[:id])
     if (@trade.user_id == current_user.id || @trade.item.user == current_user || current_user.admin?)
     else
-    flash[:danger] = "You are not the correct user"
+    flash[:danger] = "You don't have the permission"
     redirect_to root_url 
     end
     end
