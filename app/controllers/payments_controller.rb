@@ -31,11 +31,12 @@ class PaymentsController < ApplicationController
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
     if status == "Completed"
-      @payment = Payment.find params[:invoice]
+      @payment = Payment.find params[:id]
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
     end
-    render nothing: true
+    flash[:danger] = "Payment unsuccessful!"
+    redirect_to current_user
   end
   
  private 

@@ -5,7 +5,7 @@ class Payment < ApplicationRecord
   
   def paypal_url(return_path)
     values = {
-        business: "merchant@emall.com",
+        business: "Merchant@emall.com",
         cmd: "_xclick",
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
