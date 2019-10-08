@@ -14,8 +14,10 @@ class Payment < ApplicationRecord
         quantity: trade.buyquantity,
         notify_url: "#{Rails.application.secrets.app_host}/hook"
     }
-    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values
+    "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
-     
-
+  
+  def return_url(link)
+    "https://ipnpb.paypal.com/cgi-bin/webscr?cmd=_notify-validate&" + link.to_query
+  end
 end
