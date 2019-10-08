@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
   
   def show
   @item = Item.find(params[:id])
+  puts "abc"
   end
   
   def index

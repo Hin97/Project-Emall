@@ -18,6 +18,6 @@ class Payment < ApplicationRecord
   end
   
   def return_url(link)
-    "https://ipnpb.paypal.com/cgi-bin/webscr?cmd=_notify-validate&" + link.to_query
+    "https://ipnpb.paypal.com/cgi-bin/webscr?cmd=_notify-validate&" + link
   end
 end

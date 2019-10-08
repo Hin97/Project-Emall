@@ -29,6 +29,9 @@ class PaymentsController < ApplicationController
   protect_from_forgery except: [:hook]
   def hook
     params.permit! # Permit all Paypal input params
+    @return = params.to_query
+    puts @return
+    puts params
     if (params == "INVALID")
     flash[:danger] = "message not equal"
     end
@@ -39,7 +42,7 @@ class PaymentsController < ApplicationController
       @payment = Payment.find(params[:invoice])
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
-      @payment.return_url(params)
+      @payment.return_url(@return)
     end
     end
     render nothing: true
