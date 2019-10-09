@@ -27,7 +27,6 @@ class TradesController < ApplicationController
     @trade.totalprice = @calculation
     if @trade.save
       flash[:success] = "Please proceed to payment in order to complete your purchase"
-      $current_item = nil
       proceed(@trade)
       redirect_to newpayment_path
     else
@@ -55,9 +54,11 @@ class TradesController < ApplicationController
  
   def edit
     @trade = Trade.find(params[:id])
-    if !(@trade.payment.status.nil?)
+    if !(@trade.payment.nil?)
+    if !(@trade.payment.status == "Completed")
     flash[:danger] = "You have already paid for the transaction"
     redirect_to purchased_path
+    end
     end
     if (@trade.item.quantity) == 0
     flash[:danger] = "The book you looking for is run out of stock or has been take off, Your order have been canceled"

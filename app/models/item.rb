@@ -2,7 +2,7 @@ class Item < ApplicationRecord
     belongs_to :user 
     has_many :categorizations
     has_many :categories, through: :categorizations
-    has_many :trades
+    has_many :trades, dependent: :destroy
     mount_uploader :image, ImageUploader
     validates :user_id, presence: true
     validates :price, presence: true, numericality: { greater_than: 0 }

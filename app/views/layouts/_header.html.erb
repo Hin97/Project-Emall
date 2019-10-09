@@ -7,22 +7,26 @@
       <ul class="nav navbar-nav navbar-left">
       <%= link_to "EMALL", current_user, id: "logo" %> 
       </ul>
-       <ul class="nav navbar-nav navbar-right">
-         
-         
-       <li> <form class="form-inline my-2 my-lg-0" action="/search">
-       <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
-       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+               
+       <ul class="nav navbar-nav searchbar">
+       <li> <form class="form-inline" action="/search">
+       <div class="search">
+       <input class="searchTerm" name="q" type="text" placeholder="Search" aria-label="Search">
+       <button class="searchButton" type="submit">Search</button>
+       </div>
        </form> </li>
+       </ul>
        
-             <!--New Item-->
-          <li><%= link_to "View all books", items_path, class: " btn btn-lg btn-primary" %></li>
+       <ul class="nav navbar-nav navbar-right">
+
+             <!--View Items-->
+          <li><%= link_to "View all books", items_path, class: "btn btn-lg btn-primary" %></li>
        
       <!--New Item-->
               <% if current_user.admin? %>
-              <li><%= link_to "All users", users_path, class: " btn btn-lg btn-primary" %></li>
+              <li><%= link_to "All users", users_path, class: "btn btn-lg btn-primary" %></li>
               <% else %>
-              <li><%= link_to "Post Item", newitem_path, class: " btn btn-lg btn-primary" %></li>
+              <li><%= link_to "Post Item", newitem_path, class: "btn btn-lg btn-primary" %></li>
               <% end %>
 
           
@@ -53,16 +57,20 @@
         
       <ul class="nav navbar-nav navbar-left">
       <%= link_to "EMALL", root_path,id: "logo" %> 
-      
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-    
-      <li> <form class="form-inline my-2 my-lg-0" action="/search">
-       <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
-       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      
+       <ul class="nav navbar-nav searchbar">
+       <li> <form class="form-inline" action="/search">
+       <div class="search">
+       <input class="searchTerm" name="q" type="text" placeholder="Search" aria-label="Search">
+       <button class="searchButton" type="submit">Search</button>
+       </div>
        </form> </li>
+       </ul>
        
-       
+      <ul class="nav navbar-nav navbar-right">
+           <!--View Items-->
+          <li><%= link_to "View all books", items_path, class: "btn btn-lg btn-primary" %></li>
         <!--sign up-->
         <li><%= link_to "Sign up", signup_path, class: " btn btn-lg btn-primary" %></li>
         <!--Login-->

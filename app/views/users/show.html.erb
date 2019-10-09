@@ -10,25 +10,77 @@
       <!--row start-->
       <div class="row">
        <!--display for admin user-->
+      <!--1st if-->
       <% if logged_in? %> 
+      <!--2nd if-->
       <% if current_user.admin? && current_user.eql?(@user) %>
       <div class="col-md-6 col-md-offset-3">
       <div style="text-align: center;">
       <div style= "margin-left:13px;"><%= gravatar_for @user, size: 150 %></div><br>
+      <!--3rd if-->
       <% if current_user.eql?(@user) %>
       <p3>About yourself:</p3><br>
+      <!--3rd else-->
       <% else %>
       <p3>About user:</p3><br>
+      <!--3rd if end-->
       <% end %>
       <p4><%= link_to @user.name, @user %></p4><br>
       <p3>Email:</p3><br>
       <p4><%= @user.email %></p4>
       </div>
-      </div>  
-      <% end %>
-      <% end %>  
+      </div>
+     <!--2nd else-->
+      <% else %>
     <!--display for normal user-->
-     <% if !(current_user.admin?) %>    
+    <!--outside left start-->
+      <div class="col-md-3">
+      <div style="text-align: center;margin-top:50px;">
+      <div style= "margin-left:13px;"><%= gravatar_for @user, size: 150 %></div><br>
+      <!--4th if -->
+      <% if current_user.eql?(@user) %>
+      <p3>About yourself:</p3><br>
+      <!--4th else-->
+      <% else %>
+      <p3>About user:</p3><br>
+      <!--4th if end-->
+      <% end %>
+      <p4><%= link_to @user.name, @user %></p4><br>
+      <p3>Email:</p3><br>
+      <p4><%= @user.email %></p4>
+      <br>
+      <!--5th if-->
+  <% if current_user.admin? && !current_user?(@user) %>
+     <%= link_to "Delete User", @user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      <!--5th if end-->
+  <% end %>
+      </div>
+      <!--outside left end-->
+      </div>
+
+      <!--outside right start-->
+      <div class="col-md-9" style="border-left: 1px solid silver;">
+        
+      <h4 style="text-align:center;">Book for sell:</h4>
+      <!--6th if-->
+      <% if @user.items.any? %>
+      <%= render @items %>
+      <!--6th else-->
+      <% else %>
+      <br>
+      <h4 style="text-align:center;">This user haven't post anything for sell</h4>
+      <!--6th if end-->
+      <% end %>
+      <!--outside right end-->
+      </div>
+      <!--display for normal user end-->
+      <!--2nd if end-->
+      <% end %>
+      <!--row end-->
+      <!--1st else-->
+      <% else %>
+    <!--display for normal user-->
     <!--outside left start-->
       <div class="col-md-3">
       <div style="text-align: center;margin-top:50px;">
@@ -39,39 +91,26 @@
       <p3>About user:</p3><br>
       <% end %>
       <p4><%= link_to @user.name, @user %></p4><br>
-      
       <p3>Email:</p3><br>
       <p4><%= @user.email %></p4>
-      <br>
-  <% if logged_in? %>
-  <% if current_user.admin? && !current_user?(@user) %>
-     <%= link_to "Delete User", @user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
-  <% end %>
       </div>
       <!--outside left end-->
       </div>
-      
-      
 
       <!--outside right start-->
       <div class="col-md-9" style="border-left: 1px solid silver;">
         
       <h4 style="text-align:center;">Book for sell:</h4>
       <% if @user.items.any? %>
-      <!--<ol class="items">-->
       <%= render @items %>
-      <!--</ol>-->
       <% else %>
       <br>
       <h4 style="text-align:center;">This user haven't post anything for sell</h4>
       <% end %>
-      <!--outside right end-->
       </div>
-      <!--display for normal user end-->
+      <!--1nd if end-->
       <% end %>
-      <!--row end-->
+
       </div>
       <!--item class end-->
       </ol>

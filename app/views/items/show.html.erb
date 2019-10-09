@@ -60,7 +60,7 @@
      <% if logged_in? == true %>
      <% if current_user?(@item.user) %>
       <%= link_to "Take down", @item, method: :delete, class: " btn btn-lg btn-success",
-                                       data: { confirm: "You sure?" } %>
+    data: { confirm: "If you take down the book, all related transactions will be remove, are you sure?" } %>
      <%= link_to "Edit", edit_item_path(@item) , class: " btn btn-lg btn-success" %>
 
      <% end %>
@@ -68,8 +68,8 @@
      
      <% if logged_in? %>
      <% if current_user.admin? && !current_user?(@user) %>
-     <%= link_to "Delete Book", @item, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+     <%= link_to "Delete Book", @item, method: :delete, class: " btn btn-lg btn-success",
+    data: { confirm: "If you delete the book, all related transactions will be remove, are you sure?" } %>
      <% end %>
      <% if @item.quantity > 0 && current_user?(@item.user) == false && current_user.admin? == false%>
      <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>

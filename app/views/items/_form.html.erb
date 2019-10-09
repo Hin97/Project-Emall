@@ -27,7 +27,7 @@
       <% Category.all.each do |category| %>
       <label class = "checkbox-inline">
       <div class = "checkboxtag">
-      <%= check_box_tag "cate_ids[]", category.id %>
+      <%= check_box_tag "cate_ids[]", category.id, @item.category_ids.include?(category.id) %>
       </div>
       <%= category.name %>
       </label>

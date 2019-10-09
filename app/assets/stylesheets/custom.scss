@@ -120,11 +120,13 @@ p4 {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 2.3em;
+  font-size: 2.5em;
   color: #ff5733;
   text-transform: uppercase;
   letter-spacing: -1px;
   font-weight: bold;
+  // border-right: 1px solid silver;
+  padding-right: 40px;
   &:hover {
     color: #ff5733;
     text-decoration: none;
@@ -266,6 +268,7 @@ input {
   right: auto;
   left: 0;
 }
+
 
 .btn-primary{
 margin-right:15px;
@@ -484,6 +487,53 @@ th, td {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: 25px;
+}
+
+
+/* Search bar*/ 
+.searchbar{
+  width: 50%;
+}
+
+.search {
+  width: 220%;
+  position: relative;
+  display: flex;
+  margin-top: 7px;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+// .navbar-right{
+//   border-left: 1px solid silver; 
+//   padding-left: 20px;
+// }
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.form-inline{
+  width: 100%;
+}
+
+.searchButton {
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
