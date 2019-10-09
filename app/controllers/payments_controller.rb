@@ -55,7 +55,7 @@ class PaymentsController < ApplicationController
   #     reduce
   #   end
   # end
-     head :ok, content_type: "text/html"
+     render :nothing => true
   end 
   
   
