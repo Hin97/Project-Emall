@@ -29,19 +29,26 @@ class PaymentsController < ApplicationController
   protect_from_forgery except: [:hook]
   def hook
     params.permit! # Permit all Paypal input params
-    if (Payment.find(params[:invoice]).status.nil?)
+    @response = validate_IPN_notification(request.raw_post)
+    # if (Payment.find(params[:invoice]).status.nil?)
+    case @response
+    when "VERIFIED"
     status = params[:payment_status]
     if status == "Completed"
       @payment = Payment.find(params[:invoice])
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
-      reduce(@payment.trade)
+      reduce
     end
-    render nothing: true
+    when "INVALID"
+      flash[:danger] = "The verification is fail"
+      redirect_to current_user
     else
-    render nothing: true 
+      flash[:danger] = "Something wrong happen"
+      redirect_to current_user
     end
-    render nothing: true
-  end
+    render :nothing => true
+  end 
+  
   
  private 
   
@@ -53,14 +60,14 @@ class PaymentsController < ApplicationController
  end
  end
   
-    # Use callbacks to share common setup or constraints between actions.
-    def set_payment
-      @payment = Payment.find(params[:id])
-    end
+   # Use callbacks to share common setup or constraints between actions.
+   def set_payment
+   @payment = Payment.find(params[:id])
+   end
   
-    def payment_params
-    params.require(:payment).permit(:username, :email)
-    end
+  def payment_params
+  params.require(:payment).permit(:username, :email)
+  end
 
   
   # Confirms a logged-in user.
@@ -87,4 +94,7 @@ class PaymentsController < ApplicationController
       redirect_to current_user
       end
     end
+    
+    
+
 end
