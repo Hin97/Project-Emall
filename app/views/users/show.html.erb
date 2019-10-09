@@ -10,9 +10,9 @@
       <!--row start-->
       <div class="row">
        <!--display for admin user-->
-       <% if logged_in? %>
+      <% if logged_in? %> 
       <% if current_user.admin? && current_user.eql?(@user) %>
-     <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 col-md-offset-3">
       <div style="text-align: center;">
       <div style= "margin-left:13px;"><%= gravatar_for @user, size: 150 %></div><br>
       <% if current_user.eql?(@user) %>
@@ -20,18 +20,15 @@
       <% else %>
       <p3>About user:</p3><br>
       <% end %>
-      <% end %>
       <p4><%= link_to @user.name, @user %></p4><br>
-      
       <p3>Email:</p3><br>
       <p4><%= @user.email %></p4>
-
       </div>
-
-  </div>  
-    
+      </div>  
+      <% end %>
+      <% end %>  
     <!--display for normal user-->
-     <% else %>    
+     <% if !(current_user.admin?) %>    
     <!--outside left start-->
       <div class="col-md-3">
       <div style="text-align: center;margin-top:50px;">

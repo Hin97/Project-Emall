@@ -71,8 +71,10 @@ before_action :admin_user,     only: [:destroy, :index]
     # Confirms the correct user.
     def correct_user
       @user = User.find(params[:id])
+     if !(current_user?(@user))
       redirect_to(root_url) 
-      flash[:danger] = "You don't have the permission!"  unless current_user?(@user)
+      flash[:danger] = "You don't have the permission!"
+     end
     end
     
         # Confirms an admin user.
