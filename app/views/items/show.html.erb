@@ -66,15 +66,15 @@
      <% end %>
      <% end %>
      
+     <% if logged_in? %>
      <% if current_user.admin? && !current_user?(@user) %>
      <%= link_to "Delete Book", @item, method: :delete,
                                   data: { confirm: "You sure?" } %>
      <% end %>
-     
      <% if @item.quantity > 0 && current_user?(@item.user) == false && current_user.admin? == false%>
      <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>
      <% end %>
-        
+     <% end %>
       <!--outside right end-->
       </div>
       <!--row end-->
