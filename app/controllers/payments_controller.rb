@@ -55,7 +55,7 @@ class PaymentsController < ApplicationController
   #     reduce
   #   end
   # end
-     render :nothing => true
+    head :ok
   end 
   
   
