@@ -29,33 +29,33 @@ class PaymentsController < ApplicationController
   protect_from_forgery except: [:hook]
   def hook
     params.permit! # Permit all Paypal input params
-    # @response = validate_IPN_notification(request.raw_post)
-    # # if (Payment.find(params[:invoice]).status.nil?)
-    # case @response
-    # when "VERIFIED"
-    # status = params[:payment_status]
-    # if status == "Completed"
-    #   @payment = Payment.find(params[:invoice])
-    #   @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
-    #   reduce
-    # end
-    # when "INVALID"
-    #   flash[:danger] = "The verification is fail"
-    #   redirect_to current_user
-    # else
-    #   flash[:danger] = "Something wrong happen"
-    #   redirect_to current_user
-    # end
-    @api = PayPal::SDK::Merchant.new
-  if @api.ipn_valid?(request.raw_post)  # return true or false
+    @response = validate_IPN_notification(request.raw_post)
+    # if (Payment.find(params[:invoice]).status.nil?)
+    case @response
+    when "VERIFIED"
     status = params[:payment_status]
     if status == "Completed"
       @payment = Payment.find(params[:invoice])
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce
     end
-  end
-    render :nothing => true
+    when "INVALID"
+      flash[:danger] = "The verification is fail"
+      redirect_to current_user
+    else
+      flash[:danger] = "Something wrong happen"
+      redirect_to current_user
+    end
+  #   @api = PayPal::SDK::Merchant.new
+  # if @api.ipn_valid?(request.raw_post)  # return true or false
+  #   status = params[:payment_status]
+  #   if status == "Completed"
+  #     @payment = Payment.find(params[:invoice])
+  #     @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
+  #     reduce
+  #   end
+  # end
+     head :ok, content_type: "text/html"
   end 
   
   
@@ -108,20 +108,20 @@ class PaymentsController < ApplicationController
     
     
 
-# protected
-  # def validate_IPN_notification(rawdata)
-  #   sandbox = "#{Rails.application.secrets.sandbox}"
-  #   uri = URI.parse(sandbox + '/webscr?cmd=_notify-validate')
-  #   http = Net::HTTP.new(uri.host, uri.port)
-  #   http.open_timeout = 60
-  #   http.read_timeout = 60
-  #   http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-  #   http.use_ssl = true
-  #   @response = http.post(uri.request_uri, rawdata,
-  #                       'Content-Length' => "#{rawdata.size}",
-  #                       'User-Agent' => "My custom user agent"
-  #                     ).body
-  # end
+protected
+  def validate_IPN_notification(rawdata)
+    sandbox = "#{Rails.application.secrets.sandbox}"
+    uri = URI.parse(sandbox + '/webscr?cmd=_notify-validate')
+    # http = Net::HTTP.new(uri.host, uri.port)
+    # http.open_timeout = 60
+    # http.read_timeout = 60
+    # http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    # http.use_ssl = true
+    @response = http.post(uri.request_uri, rawdata,
+                        'Content-Length' => "#{rawdata.size}",
+                        'User-Agent' => "My custom user agent"
+                      ).body
+  end
 
 
 end
