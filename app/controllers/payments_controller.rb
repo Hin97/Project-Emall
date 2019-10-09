@@ -37,7 +37,7 @@ class PaymentsController < ApplicationController
     if status == "Completed"
       @payment = Payment.find(params[:invoice])
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
-      reduce
+      reduce(@payment.trade)
     end
     when "INVALID"
       flash[:danger] = "The verification is fail"
