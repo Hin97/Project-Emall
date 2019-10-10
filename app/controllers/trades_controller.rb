@@ -46,7 +46,7 @@ class TradesController < ApplicationController
  
  def show
  @trade = Trade.find(params[:id])
- if (@trade.item.user == current_user && @trade.status == false)
+ if (@trade.item.user == current_user && @trade.payment.status.nil?)
  flash[:danger] = "You don't have the permission!"  
  redirect_to current_user
  end
