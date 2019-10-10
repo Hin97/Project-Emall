@@ -1,12 +1,25 @@
-<div class="center jumbotron">
+<div class="center jumbotron" style="height: 670px">
   <h1>Welcome to the EMALL</h1>
 
   <h2>
     Our website focus on books
   </h2>
   <br></br>
-  <h3>Checkout our books!</h3>
-  
+  <div class="row">
+  <div class="col-md-6">
+  <p>Great online book store for old and new books</p>
+  <p>Join us to become a buyer and seller!</p>   
+  <%= link_to "Join us here", signup_path, class: " btn btn-lg btn-primary" %>
+  <br></br>
+  <p>Have a look our books here</p>
+  <%= link_to "Go Shop", items_path, class: "btn btn-lg btn-primary" %>
+  </div>
+          
+      
+  <div class="col-md-6">
+  <!--<img alt="Bookstore" src="/assets/Bookstore.jpg" />-->
+  <%= image_tag("Bookstore.jpg", size: "400") %>
+  </div>
 
-
+</div>
 </div>
