@@ -33,8 +33,6 @@ ActiveRecord::Schema.define(version: 20191002041104) do
     t.integer "quantity"
     t.integer "year"
     t.string "condition"
-    t.boolean "count", default: false
-    t.boolean "view", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
