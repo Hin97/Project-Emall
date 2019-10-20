@@ -1,2 +1,15 @@
-<h1>Cetegories#new</h1>
-<p>Find me in app/views/cetegories/new.html.erb</p>
+<% provide(:title, 'New category') %>
+<% provide(:button_text, 'Create') %>
+<h1>New category</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<%= form_for(@category) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+  </div>
+</div>

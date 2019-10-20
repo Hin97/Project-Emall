@@ -21,7 +21,7 @@ Trello
 https://trello.com/projectgroup118/home
 
 Github
-https://github.com/Hin97/PP1-Group1
+https://github.com/Hin97/PP1-Group26
 
 Bitbucket
 https://bitbucket.org/Hin97/pp1
