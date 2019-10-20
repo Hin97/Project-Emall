@@ -20,19 +20,19 @@
        <ul class="nav navbar-nav navbar-right">
 
              <!--View Items-->
-          <li><%= link_to "Shop", items_path, class: "btn btn-lg btn-primary" %></li>
+          <li><%= link_to "Shop", items_path, class: "btn btn-lg btn-outline-primary" %></li>
        
       <!--New Item-->
               <% if current_user.admin? %>
-              <li><%= link_to "All users", users_path, class: "btn btn-lg btn-primary" %></li>
+              <li><%= link_to "All users", users_path, class: "btn btn-lg btn-outline-primary" %></li>
               <% else %>
-              <li><%= link_to "Post Item", newitem_path, class: "btn btn-lg btn-primary" %></li>
+              <li><%= link_to "Post Item", newitem_path, class: "btn btn-lg btn-outline-primary" %></li>
               <% end %>
 
           
           <!--Logout-->
           <li class="dropdown">
-            <a href="#" class="btn btn-lg btn-primary dropdown-toggle "  data-toggle="dropdown">
+            <a href="#" class="btn btn-lg btn-outline-primary dropdown-toggle "  data-toggle="dropdown">
              <%= current_user.name %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
@@ -70,11 +70,11 @@
        
       <ul class="nav navbar-nav navbar-right">
            <!--View Items-->
-          <li><%= link_to "Shop", items_path, class: "btn btn-lg btn-primary" %></li>
+       <li><%= link_to "Shop", items_path, class: "btn btn-lg btn-outline-primary" %></li>
         <!--sign up-->
-        <li><%= link_to "Sign up", signup_path, class: " btn btn-lg btn-primary" %></li>
+        <li><%= link_to "Sign up", signup_path, class: " btn btn-lg btn-outline-primary" %></li>
         <!--Login-->
-        <li><%= link_to "Log in", login_path, class: " btn btn-lg btn-primary" %></li>
+        <li><%= link_to "Log in", login_path, class: " btn btn-lg btn-outline-primary" %></li>
         </ul>
         <% end %>
 

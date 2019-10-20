@@ -11,7 +11,12 @@ before_action :admin_user,     only: [:destroy, :index]
   end
 
   def new
+    if (logged_in?)
+    flash[:danger]= 'You have already registered'
+    redirect_to current_user
+    else
     @user = User.new
+    end
   end
 
   def create
@@ -90,5 +95,6 @@ before_action :admin_user,     only: [:destroy, :index]
     redirect_to root_url
     end
     end
+  
 
 end

@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   def new
     if logged_in?
-    flash[:danger] = 'You have already login'
-    redirect_back_or current_user
+    flash[:danger] = 'You have already logined'
+    redirect_to current_user
     end
   end
 

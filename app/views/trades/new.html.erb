@@ -23,6 +23,8 @@
 
       <div class="col-md-8">
       <div style="background-color: #eaeaea; padding:20px;  border: 1px solid gray;border-radius: 25px;">  
+      <%= form_for(@trade) do |f| %>
+      <%= render 'shared/error_messages', object: @trade %>
      <span class="price">Price: $<%= @item.price %></span>
       <span class="category">Category: 
       <% @item.category_ids.each do |id| %>
@@ -31,14 +33,13 @@
       </span>
       <span class="name">Seller: <%= link_to @item.user.name, @item.user %></span>
       <span class="name">Books in stock: <%= @item.quantity%></span>
-    <%= form_for(@trade) do |f| %>
-      <%= render 'shared/error_messages', object: @trade %>
+
           <%= f.label "Quantity Wanted" %>:
           <br>
           <%= f.number_field :buyquantity, max: @item.quantity, min: 1, style: "width:10%" %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
           <br>
-    <%= f.submit "Pay", class: "btn btn-lg btn-success", style: "width:20%" %>
+     <%= f.submit "Pay", class: "btn btn-lg btn-success", style: "width:20%" %>
      <% end %>
       </div>
             <br></br>
