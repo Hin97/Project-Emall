@@ -49,7 +49,7 @@
       <div class="col-md-6">
       <span style = "font-weight: bold;"> Book Cover:</span>
       <br></br>
-      <%= image_tag @item.image.url if @item.image? %>
+      <%= link_to image_tag(@item.image.url) , @item %>
       <!--In box right end-->
       </div>
       <!--Box end-->

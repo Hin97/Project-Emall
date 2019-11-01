@@ -3,7 +3,7 @@
       <div class="column" style="width: <%= @width %>%">
       <div style="background-color: #FFF9F9; padding:20px;  border: 1px solid gray;border-radius: 25px;">
       <span style="showbookimage">
-      <%= image_tag item.image.url if item.image? %>
+      <%= link_to image_tag(item.image.url) , item %>
       </span>
       <br></br>
       <li><a class="showbookname"><%= link_to item.name, item %></a></li>
