@@ -15,15 +15,12 @@ class PaymentsController < ApplicationController
   def create
   @payment = @trade.build_payment(payment_params)
   if @payment.save
-  redirect_to @payment.paypal_url(wait_path)
+  redirect_to @payment.paypal_url(payment_path(@payment))
   else
   render 'new'
   end
   end
-  
-  def wait
-  end
-  
+
   def show
   @payment = Payment.find(params[:id])
   end

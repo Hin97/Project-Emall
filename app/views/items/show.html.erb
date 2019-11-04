@@ -59,8 +59,8 @@
      <%= link_to "Return to items List", current_user, class: " btn btn-lg btn-success" %>
      <% if logged_in? == true %>
      <% if current_user?(@item.user) %>
-      <%= link_to "Take down", @item, method: :delete, class: " btn btn-lg btn-success",
-    data: { confirm: "If you take down the book, all related transactions will be remove, are you sure?" } %>
+      <%= link_to "Remove book", @item, method: :delete, class: " btn btn-lg btn-success",
+    data: { confirm: "If you remove the book, all related transactions will be remove as well, are you sure?" } %>
      <%= link_to "Edit", edit_item_path(@item) , class: " btn btn-lg btn-success" %>
 
      <% end %>
@@ -71,7 +71,7 @@
      <%= link_to "Delete Book", @item, method: :delete, class: " btn btn-lg btn-success",
     data: { confirm: "If you delete the book, all related transactions will be remove, are you sure?" } %>
      <% end %>
-     <% if current_user.admin? == false %>
+     <% if current_user.admin? == false && current_user?(@item.user) == false %>
      <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>     
      <% end %>
      <% end %>     
