@@ -23,7 +23,7 @@
   <%= f.label "Email" %>
   <%= f.email_field :email, class: 'form-control' %>
   <p>Purchase quantity: <%= @trade.buyquantity %></p>
-  <p>Book price: <%= @trade.item.price %></p>  
+  <p>Book price: $<%= @trade.item.price %></p>  
   <% end %>
   <br>
   <%= f.label "Total price:" %>

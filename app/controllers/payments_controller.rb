@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-  before_action :set_trade
+  before_action :set_trade, only:[:new,:create, :edit]
   before_action :set_payment, only:[:show, :edit, :update]
   before_action :admin_no_payment,   only: [:new, :create]
   before_action :correct_user,   only: [:show, :edit, :update]
@@ -38,6 +38,7 @@ class PaymentsController < ApplicationController
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
       $current_item = nil
+      redirect_to :back
     end
     when "INVALID"
       flash[:danger] = "The verification is fail"
