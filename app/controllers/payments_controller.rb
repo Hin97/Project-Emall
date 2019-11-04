@@ -38,7 +38,7 @@ class PaymentsController < ApplicationController
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
       $current_item = nil
-      redirect_to :back
+    redirect_back(fallback_location: @payment)
     end
     when "INVALID"
       flash[:danger] = "The verification is fail"
