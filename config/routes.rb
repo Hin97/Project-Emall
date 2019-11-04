@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 get ':status', to: 'errors#show' 
 get '/404' , to: 'errors#show'
 get "*path" , to: 'errors#show'
+get '/wait', to: 'payments#wait'
 
 
 end

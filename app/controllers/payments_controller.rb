@@ -15,10 +15,13 @@ class PaymentsController < ApplicationController
   def create
   @payment = @trade.build_payment(payment_params)
   if @payment.save
-  redirect_to @payment.paypal_url(payment_path(@payment))
+  redirect_to @payment.paypal_url(wait_path)
   else
   render 'new'
   end
+  end
+  
+  def wait
   end
   
   def show
@@ -38,7 +41,7 @@ class PaymentsController < ApplicationController
       @payment.update_attributes(notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now)
       reduce(@payment.trade)
       $current_item = nil
-    redirect_back(fallback_location: @payment)
+    redirect_to payment_path(@payment)
     end
     when "INVALID"
       flash[:danger] = "The verification is fail"
