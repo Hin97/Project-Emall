@@ -463,9 +463,6 @@ input[type='checkbox'] {
   margin-right: 0.5em;
 }
 
-
-
-
 /* table that use to display transaction information*/ 
 table, th, td {
   border: 1px solid black;
@@ -490,10 +487,11 @@ th, td {
 /* Search bar*/ 
 .searchbar{
   width: 50%;
+
 }
 
 .search {
-  width: 220%;
+  width: 135%;
   position: relative;
   display: flex;
   margin-top: 7px;
@@ -507,8 +505,21 @@ th, td {
   height: 20px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9DBFAF;
+
 }
+
+
+.searchcate{
+  width: 35%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+
+}
+
 
 // .navbar-right{
 //   border-left: 1px solid silver; 
