@@ -1,6 +1,8 @@
 class Payment < ApplicationRecord
   belongs_to :trade
-  
+  validates :username, presence: true
+  validates :email, presence: true
+    
   def paypal_url(return_path)
     values = {
         business: "Merchant@emall.com",

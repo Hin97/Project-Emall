@@ -71,10 +71,14 @@
      <%= link_to "Delete Book", @item, method: :delete, class: " btn btn-lg btn-success",
     data: { confirm: "If you delete the book, all related transactions will be remove, are you sure?" } %>
      <% end %>
-     <% if @item.quantity > 0 && current_user?(@item.user) == false && current_user.admin? == false%>
-     <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>
+     <% if current_user.admin? == false %>
+     <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>     
      <% end %>
+     <% end %>     
+     <% if @item.quantity > 0 && current_user.nil? == true%>
+     <%= link_to "Purchase" , pay(@item), class: " btn btn-lg btn-success" %>  
      <% end %>
+
       <!--outside right end-->
       </div>
       <!--row end-->

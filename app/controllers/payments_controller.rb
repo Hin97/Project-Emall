@@ -1,7 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_trade
   before_action :set_payment, only:[:show, :edit, :update]
-  before_action :logged_in_user,  only: [:new, :create, :show, :edit, :update]
   before_action :admin_no_payment,   only: [:new, :create]
   before_action :correct_user,   only: [:show, :edit, :update]
  
@@ -81,29 +80,23 @@ class PaymentsController < ApplicationController
   params.require(:payment).permit(:username, :email)
   end
 
-  
-  # Confirms a logged-in user.
-  def logged_in_user
-    unless logged_in?
-    store_location
-    flash[:danger] = "Please log in."
-    redirect_to login_url
-    end
-  end
-  
     def correct_user
     @payment = Payment.find_by(id: params[:id])
+    if (current_user.nil? == false)
     if (@payment.username == current_user.name && @payment.email == current_user.email)
     else
     flash[:danger] = "You don't have the permission"
     redirect_to root_url 
     end
     end
+    end
     
     def admin_no_payment
+      if (current_user.nil? == false)
       if current_user.admin?
       flash[:danger]= "Admin cannot make any payments"
       redirect_to current_user
+      end
       end
     end
     

@@ -59,7 +59,7 @@
     <li><span class="quantity">Book in store: <%= @trade.item.quantity %></span></li>
     <li><span class="timestamp">Purchased at: <%= @trade.created_at %></span></li>
     <% if !(@trade.payment.nil?)  && !(@trade.payment.status.nil?)  %>
-    <%= link_to "View invoice", show_payment_path(@trade.payment), class: " btn btn-lg btn-success" %>
+    <%= link_to "View invoice", @trade.payment, class: " btn btn-lg btn-success" %>
     <% end %>
     
     <% if @trade.payment.nil? %>

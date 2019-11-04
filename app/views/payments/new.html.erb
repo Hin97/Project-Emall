@@ -8,13 +8,23 @@
       </h5>
     </section>
   <%= form_for(@payment, url: newpayment_path) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
+  <% if current_user.nil? == false %>
   <p>Username: <%= current_user.name %></p>
   <p>Email: <%= current_user.email %></p>
   <p>Purchase quantity: <%= @trade.buyquantity %></p>
   <p>Book price: <%= @trade.item.price %></p>  
   <%= f.hidden_field :username, :value => current_user.name %>
   <%= f.hidden_field :email, :value => current_user.email %>
+  <% else %>
+  <%= f.label "Name" %>
+  <%= f.text_field :username, class: 'form-control' %>
+  <%= f.label "Email" %>
+  <%= f.email_field :email, class: 'form-control' %>
+  <p>Purchase quantity: <%= @trade.buyquantity %></p>
+  <p>Book price: <%= @trade.item.price %></p>  
+  <% end %>
   <br>
   <%= f.label "Total price:" %>
   $<%= @trade.totalprice %>

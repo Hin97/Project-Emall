@@ -1,6 +1,6 @@
 class TradesController < ApplicationController
  before_action :set_item
- before_action :logged_in_user,    only: [:new, :create, :purchased, :sold, :show, :edit, :update, :destory]  
+ before_action :logged_in_user,    only: [:purchased, :sold, :show, :edit, :update, :destory]  
  before_action :exist_trade, only: [:edit, :update, :destory, :show]
  before_action :correct_buyer,   only: [:edit, :update, :destory]
  before_action :admin_no_transactions,   only: [:new, :create,:edit, :update]
@@ -124,9 +124,11 @@ class TradesController < ApplicationController
     end
     
       def admin_no_transactions
+      if (current_user.nil? == false)
       if current_user.admin?
       flash[:danger]= "Admin cannot make any payments"
       redirect_to current_user
+      end
       end
       end
       
