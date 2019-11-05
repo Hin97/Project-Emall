@@ -30,7 +30,12 @@
       <div class="col-md-6">
       <span class="name">Name: <%= @item.name %></span>
       <span class="price">Price: $<%= @item.price %></span>
+      <% if @item.quantity ==0 %>
+      <span class="quantity" style="color: red;">Quantity: Out of stock</span>
+      <% else %>
       <span class="quantity">Quantity: <%= @item.quantity %></span>
+      <% end %>
+      </span>
       <span class="category">Category: 
       <% @item.category_ids.each do |id| %>
            "<%= Category.find(id).name %>"
