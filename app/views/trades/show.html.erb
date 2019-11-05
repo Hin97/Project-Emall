@@ -46,9 +46,9 @@
     <% if @trade.item.user.eql?(current_user) %>
     <li><span class="quantity">Book name: <%= link_to @trade.item.name , @trade.item %></span></li>
       <% if @trade.user_id == -1 %>
-      <span class="quantity">Buyer: <%= @trade.payment.username %></span>
+      <li><span class="quantity">Buyer: <%= @trade.payment.username %></span></li>
       <% else %>
-      <span class="quantity">Buyer: <%= link_to User.find(@trade.user_id).name , User.find(@trade.user_id) %></span>
+      <li><span class="quantity">Buyer: <%= link_to User.find(@trade.user_id).name , User.find(@trade.user_id) %></span></li>
       <% end %>
     <li><span class="quantity">Buyer email: <%= @trade.payment.email %></span></li>    
     <li><span class="quantity">Remaining stock: <%= @trade.item.quantity %></span></li>
