@@ -4,6 +4,7 @@
 
 <div class="row">
 <!--Book-->
+<% if @cat == "title" %>
 <h4><font color="green">Book</font></h4>
 <h2><%= @itemA.count %> results for <%= @keyword %></h2>
 <ol class="items">
@@ -20,7 +21,10 @@
 </ol>
 </div>
 <br></br>
+<% end %>
+
 <!--Category-->
+<% if @cat == "category" %>
 <div class="row">
 <h4><font color="green">Category</font></h4>
 <h2><%= @cate.count %> results for <%= @keyword %></h2>
@@ -45,7 +49,9 @@
 </div>
 <br></br>
 <div class="row">
-<!--Book-->
+<% end %>
+<!--Author-->
+<% if @cat == "author" %>
 <h4><font color="green">Author</font></h4>
 <h2><%= @auth.count %> results for <%= @keyword %></h2>
 <ol class="items">
@@ -61,3 +67,4 @@
 <% end %>
 </ol>
 </div>
+<% end %>

@@ -35,6 +35,8 @@ class ItemsController < ApplicationController
   def search
     # Define keyword for search 
     @keyword = params[:q]
+    # Define cate for search
+    @cat = params[:cate]
     # Split keywork into array
     @split = @keyword.split(" ")
     # split size
@@ -61,7 +63,6 @@ class ItemsController < ApplicationController
     end
     @items = Item.where(id:@showbook)
     # Find books based on book name with keywork    
-    @last = Item.order("created_at desc").limit(10)
     # Book end
     
     # Category start
