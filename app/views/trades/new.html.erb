@@ -40,7 +40,7 @@
           <% if current_user.nil? == false%>
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <% else %>
-          <%= f.hidden_field :user_id, :value => "Guest" %>    
+          <%= f.hidden_field :user_id, :value => -1 %>    
           <% end %>
           <br>
      <%= f.submit "Pay", class: "btn btn-lg btn-success", style: "width:20%" %>

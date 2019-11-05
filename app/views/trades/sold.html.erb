@@ -25,7 +25,11 @@
       <div class="col-md-6">
       <span class="quantity">Transaction ID: <%= link_to trade.id , trade %></span>
       <span class="quantity">Book name: <%= link_to trade.item.name , trade.item %></span>
+      <% if trade.user_id == -1 %>
+      <span class="quantity">Buyer: Guest</span>
+      <% else %>
       <span class="quantity">Buyer: <%= link_to User.find(trade.user_id).name , User.find(trade.user_id) %></span>
+      <% end %>
       <span class="quantity">Quantity sold: <%= trade.buyquantity %></span>
       <span class="quantity">Total Price: $<%= trade.totalprice %></span>
       <span class="quantity">Sold date:</span>
