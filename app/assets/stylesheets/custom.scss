@@ -18,9 +18,9 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 30px;
-  min-width: 1328px;
-  height: auto;
+   min-width:1000px;        
+   width: auto !important;  
+   width:1000px;  
 }
 
 section {

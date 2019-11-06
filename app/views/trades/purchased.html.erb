@@ -44,7 +44,7 @@
       <div class="col-md-6" >
       <span style = "font-weight: bold;"> Book Cover:</span>
       <br>
-      <%= image_tag(trade.item.image.url, width: "55%") if trade.item.image? %>
+      <%= link_to image_tag(trade.item.image.url, width: "55%"), trade.item  %>
       <!--In box right end-->
       <%= link_to "View detail" , trade %>
       </div>

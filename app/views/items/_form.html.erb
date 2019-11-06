@@ -1,40 +1,40 @@
 <%= form_for(@item) do |f| %>
   <%= render 'shared/erroritem_messages', object: @item %>
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :price %>$
-      <%= f.number_field :price, step: :any, placeholder: "In USD" %>
+      <%= f.number_field :price, step: :any, placeholder: "In USD", class: 'form-control' %>
 
       <%= f.label :author %>
-      <%= f.text_field :author %>
+      <%= f.text_field :author, class: 'form-control' %>
             
       <%= f.label :quantity %>
-      <%= f.number_field:quantity %>
+      <%= f.number_field:quantity, class: 'form-control' %>
       
       <%= f.label "Year published" %>
-      <%= f.number_field :year, min: 1800, max: Time.now.year %>
+      <%= f.number_field :year, min: 1800, max: Time.now.year, placeholder: "1800-2019" ,class: 'form-control' %>
       
       <%= f.label :condition %>
       <br>
-      <%= f.select(:condition, Item::CONDITION_LIST) %>
+      <%= f.select :condition, Item::CONDITION_LIST, class: 'form-control' %>
       <br></br>
       <%= f.label :description %>
-      <%= f.text_area :description ,size: "30x10" %>
+      <%= f.text_area :description ,size: "30x10",placeholder: "Maximum 300 characters", class: 'form-control' %>
 
       <%= hidden_field_tag "cate_ids[]",nil %>
       <%= f.label "category:" %>         
       <% Category.all.each do |category| %>
       <label class = "checkbox-inline">
       <div class = "checkboxtag">
-      <%= check_box_tag "cate_ids[]", category.id, @item.category_ids.include?(category.id) %>
+      <%= check_box_tag "cate_ids[]", category.id, @item.category_ids.include?(category.id), class: 'form-control' %>
       </div>
       <%= category.name %>
       </label>
       <% end %>
       <br></br>
       <%= f.label "Book Cover" %>
-      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' , class: 'form-control'%>
       
     
     <%= f.submit yield(:button_text), class: "btn btn-success" %>
