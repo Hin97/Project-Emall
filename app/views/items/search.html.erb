@@ -10,6 +10,8 @@
 <ol class="items">
 <% if @itemA.count == 0 %>
 <h3>No exact matches found</h3>
+<h3>Checkout our latest book</h3>
+<%= render @last %>
 <br></br>
 <% if @items.count != 0%>
 <h3>Results matching fewer words</h3>
@@ -28,8 +30,12 @@
 <div class="row">
 <h4><font color="green">Category</font></h4>
 <h2><%= @cate.count %> results for <%= @keyword %></h2>
+<ol class="items">
 <% if @cate.count == 0 %>
 <h3>No exact matches found</h3>
+<h3>Checkout our latest book</h3>
+<%= render @last %>
+</ol>
 <br></br>
 <% if @categories.count != 0%>
 <h3>Results matching fewer words</h3>
@@ -57,6 +63,8 @@
 <ol class="items">
 <% if @auth.count == 0 %>
 <h3>No exact matches found</h3>
+<h3>Checkout our latest book</h3>
+<%= render @last %>
 <br></br>
 <% if @authors.count != 0%>
 <h3>Results matching fewer words</h3>

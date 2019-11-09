@@ -29,7 +29,7 @@
       <!--In box left start-->
       <div class="col-md-6">
       <span class="name">Name: <%= @item.name %></span>
-      <span class="price">Price: $<%= @item.price %></span>
+
       <% if @item.quantity ==0 %>
       <span class="quantity" style="color: red;">Quantity: Out of stock</span>
       <% else %>
@@ -52,9 +52,11 @@
       </div>
       <!--In box right start-->
       <div class="col-md-6">
-      <span style = "font-weight: bold;"> Book Cover:</span>
+      <span style = "font-weight: bold;"> Book Cover:
       <br></br>
-      <%= link_to image_tag(@item.image.url) , @item %>
+      <%= link_to image_tag(@item.image.url) , @item %></span>
+      <br></br>    
+      <span class="price">Price: $<%= @item.price %></span>
       <!--In box right end-->
       </div>
       <!--Box end-->

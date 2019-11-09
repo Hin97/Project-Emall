@@ -41,6 +41,7 @@ class ItemsController < ApplicationController
     @split = @keyword.split(" ")
     # split size
     @size = @split.size
+    @last = Item.order("created_at desc").limit(10)
     
     
     #Book start
@@ -106,7 +107,6 @@ class ItemsController < ApplicationController
     end
     @authors = Item.where(id:@showauthor)
     # Author end
-    
   end
   
   
